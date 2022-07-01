@@ -8,23 +8,23 @@ const input = fs
 	.split('\n')
 
 
-const countDirections = (line) => {
-    let directionCounter = {}
+const createDirectionObj = (line) => {
+    let directionObj = {}
     for(let i = 0; i < line.length; i++) {
         const direction = line[i]
-        if (!directionCounter[direction]) {
-            directionCounter[direction] = 1
+        if (!directionObj[direction]) {
+             directionObj[direction] = 1
         } else {
-            directionCounter[direction]++
+             directionObj[direction]++
         }
     }
-    return directionCounter
+    return  directionObj
 }
 
 const countSamePositions = () => {
     let counter = 0
     for(let i = 0; i < input.length; i++) {
-        const directionObj = countDirections(input[i])
+        const directionObj = createDirectionObj(input[i]);
         if (directionObj.N === directionObj.S && directionObj.W === directionObj.E) counter++
     }
 
