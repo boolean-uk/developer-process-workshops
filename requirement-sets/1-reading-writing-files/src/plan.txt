@@ -1,0 +1,19 @@
+Separate movements into two different axis:
+- x-axis = E, W
+- y-axis = N, S
+
+Map movements with integer values:
+- N, E = 1
+= S, W = -1
+
+For each line of input.txt:
+- Calculate the sum of all x-axis movements in that line
+- Calculate the sum of all y-axis movements in that line
+- If one of those is not 0, then the person didn't
+end up in the same position
+
+## Extension
+- Calculate the total sum of all x-axis movements
+- Calculate the total sum of all y-axis movements
+- If one of those is not 0, then the person didn't
+end up in the same position
