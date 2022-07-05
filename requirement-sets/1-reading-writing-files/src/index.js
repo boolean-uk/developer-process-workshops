@@ -2,13 +2,15 @@ const events = require('events');
 const fs = require('fs');
 const readline = require('readline');
 
-let count = 0;
+const inputFilename = "input.txt"
+const outputFilename = "answer.txt"
+
+let countInitialPositions = 0;
 
 function evaluateinitialPosition(directions) {
     let initialPosition = { 'x': 0, 'y': 0 };
 
     for (const letter of directions) {
-
         switch (letter) {
             case "W":
                 initialPosition['x'] -= 1;
@@ -25,39 +27,37 @@ function evaluateinitialPosition(directions) {
             default:
                 break;
         }
-
     }
 
     if (initialPosition['x'] == 0 && initialPosition['y'] == 0) {
-        count ++;
+        countInitialPositions ++;
     }
 }
 
 function writeToAnswerFile(finalCount) {
-    let dataToSave = "Count: " + finalCount;
-    fs.writeFile('answer.txt', dataToSave, function (err) {
+    let dataToSave = `count: ${finalCount}`;
+    fs.writeFile(outputFilename, dataToSave, function (err) {
         if (err) return console.log(err);
-        console.log(finalCount, 'answer.txt');
-      });
+    });
+    return;
 }
 
-(async function processLineByLine() {
+async function processFileLineByLine(filePath) {
   try {
-    const rl = readline.createInterface({
-      input: fs.createReadStream('./input.txt'),
+    const lineRead = readline.createInterface({
+      input: fs.createReadStream(filePath),
       crlfDelay: Infinity
     });
 
-    rl.on('line', (line) => {
-      console.log(`Movement steps from file: ${line}`);
-      evaluateinitialPosition(line)
+    lineRead.on('line', (line) => {
+      evaluateinitialPosition(line);
     });
 
-    await events.once(rl, 'close');
-
-    console.log('The file is done.');
-    writeToAnswerFile(count);
-  } catch (err) {
+    await events.once(lineRead, 'close');
+    writeToAnswerFile(countInitialPositions);
+} catch (err) {
     console.error(err);
   }
-})();
+};
+
+processFileLineByLine(`./${inputFilename}`);
