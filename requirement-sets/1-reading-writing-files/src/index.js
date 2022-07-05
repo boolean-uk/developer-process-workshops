@@ -2,6 +2,8 @@ const events = require('events');
 const fs = require('fs');
 const readline = require('readline');
 
+let count = 0;
+
 function evaluateinitialPosition(directions) {
     let initialPosition = { 'x': 0, 'y': 0 };
 
@@ -26,13 +28,17 @@ function evaluateinitialPosition(directions) {
 
     }
 
-    console.log("These are the coordinates: ", initialPosition);
-
     if (initialPosition['x'] == 0 && initialPosition['y'] == 0) {
-        console.log("True - Back on the starting position!\n");
-    } else {
-        console.log("False - Not on starting position!\n");
+        count ++;
     }
+}
+
+function writeToAnswerFile(finalCount) {
+    let dataToSave = "Count: " + finalCount;
+    fs.writeFile('answer.txt', dataToSave, function (err) {
+        if (err) return console.log(err);
+        console.log(finalCount, 'answer.txt');
+      });
 }
 
 (async function processLineByLine() {
@@ -50,6 +56,7 @@ function evaluateinitialPosition(directions) {
     await events.once(rl, 'close');
 
     console.log('The file is done.');
+    writeToAnswerFile(count);
   } catch (err) {
     console.error(err);
   }
