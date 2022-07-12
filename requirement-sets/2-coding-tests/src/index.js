@@ -7,7 +7,7 @@ const multiCharRepeatedNonUnique = 'zzzzzzzzaaaatddddbhhhvvvaaaavvkkoooooooooonn
 
 function find_longest_sequence (inputString) {
   const allCharacterCounts = []
-  let singleCharacterDuplicates = {}
+  let singleCharacterCounts = {}
 
   for (let charIndex = 0; charIndex < inputString.length; charIndex++) {
     const thisCharacter = inputString[charIndex]
@@ -17,16 +17,16 @@ function find_longest_sequence (inputString) {
       nextCharacter = inputString[charIndex + 1]
     }
 
-    if (singleCharacterDuplicates.char) {
-      singleCharacterDuplicates.amount++
+    if (singleCharacterCounts.char) {
+      singleCharacterCounts.amount++
     } else {
-      singleCharacterDuplicates.char = thisCharacter
-      singleCharacterDuplicates.amount = 1
+      singleCharacterCounts.char = thisCharacter
+      singleCharacterCounts.amount = 1
     }
 
     if (thisCharacter !== nextCharacter) {
-      allCharacterCounts.push(singleCharacterDuplicates)
-      singleCharacterDuplicates = {}
+      allCharacterCounts.push(singleCharacterCounts)
+      singleCharacterCounts = {}
     }
   }
   const resultsSortedByValue = allCharacterCounts.sort((a, b) => b.amount - a.amount)
