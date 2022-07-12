@@ -1,6 +1,6 @@
 function findLongestSequence (inputString) {
   const allCharacterCounts = []
-  let singleCharacterCounts = {}
+  let thisCharacterCount = {}
 
   for (let charIndex = 0; charIndex < inputString.length; charIndex++) {
     const thisCharacter = inputString[charIndex]
@@ -10,16 +10,16 @@ function findLongestSequence (inputString) {
       nextCharacter = inputString[charIndex + 1]
     }
 
-    if (singleCharacterCounts.char) {
-      singleCharacterCounts.amount++
+    if (thisCharacterCount.char) {
+      thisCharacterCount.amount++
     } else {
-      singleCharacterCounts.char = thisCharacter
-      singleCharacterCounts.amount = 1
+      thisCharacterCount.char = thisCharacter
+      thisCharacterCount.amount = 1
     }
 
     if (thisCharacter !== nextCharacter) {
-      allCharacterCounts.push(singleCharacterCounts)
-      singleCharacterCounts = {}
+      allCharacterCounts.push(thisCharacterCount)
+      thisCharacterCount = {}
     }
   }
   const resultsSortedByValue = allCharacterCounts.sort((a, b) => b.amount - a.amount)
