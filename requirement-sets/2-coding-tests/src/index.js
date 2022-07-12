@@ -5,7 +5,7 @@ const oneCharRepeated = 'dddddddddd'
 const multiCharRepeatedUnique = 'zzzzzzzzaaaatddddbhhhvvv'
 const multiCharRepeatedNonUnique = 'zzzzzzzzaaaatddddbhhhvvvaaaavvkkoooooooooonnnnnnnnnnmmmmmmmmmmiuhjkciiiiii'
 
-function find_longest_sequence (inputString) {
+function findLongestSequence (inputString) {
   const allCharacterCounts = []
   let singleCharacterCounts = {}
 
@@ -30,13 +30,12 @@ function find_longest_sequence (inputString) {
     }
   }
   const resultsSortedByValue = allCharacterCounts.sort((a, b) => b.amount - a.amount)
-  const uniqueTopResult = getAlphabeticalUniqueTopResult(resultsSortedByValue)[0]
-
-  const output = {}
+  const uniqueTopResult = getAlphabeticalUniqueTopResult(resultsSortedByValue)
 
   const resultKey = uniqueTopResult.char.toLowerCase()
   const resultValue = uniqueTopResult.amount
 
+  const output = {}
   output[resultKey] = resultValue
 
   return output
@@ -56,15 +55,15 @@ function getAlphabeticalUniqueTopResult (results) {
     }
 
     if (thisEntry.amount !== nextEntry.amount) {
-      return topResults.sort((a, b) => a.char.localeCompare(b.char))
+      return topResults.sort((a, b) => a.char.localeCompare(b.char))[0]
     }
   }
 }
 
-const resultOneCharNonRepeated = find_longest_sequence(oneCharNonRepeated)
-const resultOneCharRepeated = find_longest_sequence(oneCharRepeated)
-const resultMultiCharRepeatedUnique = find_longest_sequence(multiCharRepeatedUnique)
-const resultMultiCharRepeatedNonUnique = find_longest_sequence(multiCharRepeatedNonUnique)
+const resultOneCharNonRepeated = findLongestSequence(oneCharNonRepeated)
+const resultOneCharRepeated = findLongestSequence(oneCharRepeated)
+const resultMultiCharRepeatedUnique = findLongestSequence(multiCharRepeatedUnique)
+const resultMultiCharRepeatedNonUnique = findLongestSequence(multiCharRepeatedNonUnique)
 
 // do not edit below this line
 module.exports = {
