@@ -1,71 +1,71 @@
 function findLongestSequence (inputString) {
-  const allCharacterCounts = []
+  const ALL_CHARACTER_COUNTS = []
   let thisCharacterCount = {}
 
   for (let charIndex = 0; charIndex < inputString.length; charIndex++) {
-    const thisCharacter = inputString[charIndex]
+    const THIS_CHARACTER = inputString[charIndex]
     let nextCharacter
 
     if (inputString[charIndex + 1]) {
       nextCharacter = inputString[charIndex + 1]
     }
 
-    if (thisCharacterCount.char) {
+    if (thisCharacterCount.amount) {
       thisCharacterCount.amount++
     } else {
-      thisCharacterCount.char = thisCharacter
+      thisCharacterCount.char = THIS_CHARACTER
       thisCharacterCount.amount = 1
     }
 
-    if (thisCharacter !== nextCharacter) {
-      allCharacterCounts.push(thisCharacterCount)
+    if (THIS_CHARACTER !== nextCharacter) {
+      ALL_CHARACTER_COUNTS.push(thisCharacterCount)
       thisCharacterCount = {}
     }
   }
-  const resultsSortedByValue = allCharacterCounts.sort((a, b) => b.amount - a.amount)
-  const uniqueTopResult = getAlphabeticalUniqueTopResult(resultsSortedByValue)
+  const RESULTS_SORTED_BY_VALUE = ALL_CHARACTER_COUNTS.sort((a, b) => b.amount - a.amount)
+  const UNIQUE_TOP_RESULT = getAlphabeticalUniqueTopResult(RESULTS_SORTED_BY_VALUE)
 
-  const resultKey = uniqueTopResult.char.toLowerCase()
-  const resultValue = uniqueTopResult.amount
+  const RESULT_KEY = UNIQUE_TOP_RESULT.char.toLowerCase()
+  const RESULT_VALUE = UNIQUE_TOP_RESULT.amount
 
-  const output = {}
-  output[resultKey] = resultValue
+  const OUTPUT = {}
+  OUTPUT[RESULT_KEY] = RESULT_VALUE
 
-  return output
+  return OUTPUT
 }
 
 function getAlphabeticalUniqueTopResult (results) {
-  const topResults = []
+  const TOP_RESULTS = []
 
   for (let resultIndex = 0; resultIndex < results.length; resultIndex++) {
-    const thisEntry = results[resultIndex]
+    const THIS_ENTRY = results[resultIndex]
     let nextEntry = { amount: 0 }
 
-    topResults.push(thisEntry)
+    TOP_RESULTS.push(THIS_ENTRY)
 
     if (results[resultIndex + 1]) {
       nextEntry = results[resultIndex + 1]
     }
 
-    if (thisEntry.amount !== nextEntry.amount) {
-      return topResults.sort((a, b) => a.char.localeCompare(b.char))[0]
+    if (THIS_ENTRY.amount !== nextEntry.amount) {
+      return TOP_RESULTS.sort((a, b) => a.char.localeCompare(b.char))[0]
     }
   }
 }
 
-const oneCharNonRepeated = 'z'
-const oneCharRepeated = 'dddddddddd'
-const multiCharRepeatedUnique = 'zzzzzzzzaaaatddddbhhhvvv'
-const multiCharRepeatedNonUnique = 'zzzzzzzzaaaatddddbhhhvvvaaaavvkkoooooooooonnnnnnnnnnmmmmmmmmmmiuhjkciiiiii'
+const ONE_CHAR_NON_REPEATED = 'z'
+const ONE_CHAR_REPEATED = 'dddddddddd'
+const MULTI_CHAR_REPEATED_UNIQUE = 'zzzzzzzzaaaatddddbhhhvvv'
+const MULTI_CHAR_REPEATED_NON_UNIQUE = 'zzzzzzzzaaaatddddbhhhvvvaaaavvkkoooooooooonnnnnnnnnnmmmmmmmmmmiuhjkciiiiii'
 
-const resultOneCharNonRepeated = findLongestSequence(oneCharNonRepeated)
-const resultOneCharRepeated = findLongestSequence(oneCharRepeated)
-const resultMultiCharRepeatedUnique = findLongestSequence(multiCharRepeatedUnique)
-const resultMultiCharRepeatedNonUnique = findLongestSequence(multiCharRepeatedNonUnique)
+const RESULT_ONE_CHAR_NON_REPEATED = findLongestSequence(ONE_CHAR_NON_REPEATED)
+const RESULT_ONE_CHAR_REPEATED = findLongestSequence(ONE_CHAR_REPEATED)
+const RESULT_MULTI_CHAR_REPEATED_UNIQUE = findLongestSequence(MULTI_CHAR_REPEATED_UNIQUE)
+const RESULT_MULTI_CHAR_REPEATED_NON_UNIQUE = findLongestSequence(MULTI_CHAR_REPEATED_NON_UNIQUE)
 
 module.exports = {
-  a: resultOneCharNonRepeated,
-  b: resultOneCharRepeated,
-  c: resultMultiCharRepeatedUnique,
-  d: resultMultiCharRepeatedNonUnique
+  a: RESULT_ONE_CHAR_NON_REPEATED,
+  b: RESULT_ONE_CHAR_REPEATED,
+  c: RESULT_MULTI_CHAR_REPEATED_UNIQUE,
+  d: RESULT_MULTI_CHAR_REPEATED_NON_UNIQUE
 }
