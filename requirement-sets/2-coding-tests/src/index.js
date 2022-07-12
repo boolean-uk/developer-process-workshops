@@ -1,6 +1,6 @@
 // run the program
 
-const input = "zzzzzzaaaatddddbhhhvvvaaaavvkkoooiuhjkciiiiii"
+const input = "zzzzzzzzaaaatddddbhhhvvvaaaavvkkooooooooooiuhjkciiiiii"
 
 function find_longest_sequence(inputString) {
     let allDuplicates = []
@@ -30,7 +30,14 @@ function find_longest_sequence(inputString) {
     results_sorted_by_value = sort_results_by_value(allDuplicates)
     results_sorted_alphabetically = sort_top_results_alphabetically(results_sorted_by_value)
     
-    return results_sorted_alphabetically[0];
+    let resultObject = {}
+
+    let resultKey = results_sorted_alphabetically[0].char.toLowerCase()
+    let resultValue = results_sorted_alphabetically[0].amount
+
+    resultObject[resultKey] = resultValue
+    
+    return resultObject
 }
 
 function sort_results_by_value(results) {
