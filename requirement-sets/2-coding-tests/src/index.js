@@ -1,10 +1,5 @@
 // run the program
 
-const oneCharNonRepeated = 'z'
-const oneCharRepeated = 'dddddddddd'
-const multiCharRepeatedUnique = 'zzzzzzzzaaaatddddbhhhvvv'
-const multiCharRepeatedNonUnique = 'zzzzzzzzaaaatddddbhhhvvvaaaavvkkoooooooooonnnnnnnnnnmmmmmmmmmmiuhjkciiiiii'
-
 function findLongestSequence (inputString) {
   const allCharacterCounts = []
   let singleCharacterCounts = {}
@@ -59,6 +54,11 @@ function getAlphabeticalUniqueTopResult (results) {
     }
   }
 }
+
+const oneCharNonRepeated = 'z'
+const oneCharRepeated = 'dddddddddd'
+const multiCharRepeatedUnique = 'zzzzzzzzaaaatddddbhhhvvv'
+const multiCharRepeatedNonUnique = 'zzzzzzzzaaaatddddbhhhvvvaaaavvkkoooooooooonnnnnnnnnnmmmmmmmmmmiuhjkciiiiii'
 
 const resultOneCharNonRepeated = findLongestSequence(oneCharNonRepeated)
 const resultOneCharRepeated = findLongestSequence(oneCharRepeated)
