@@ -5,7 +5,7 @@ const {
 } = require("../src/question-2");
 
 describe("calculateInterest()", () => {
-  it("returns 101", () => {
+  it("returns 1", () => {
     expect(calculateInterest(100, 1)).toEqual(1);
   });
 });

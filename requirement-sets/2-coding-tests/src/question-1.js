@@ -1,5 +1,3 @@
-// 1
-
 const longestSequence = (str) => {
   const strToParse = str.toLowerCase();
   let curLetter = strToParse[0];
