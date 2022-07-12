@@ -1,6 +1,6 @@
 // run the program
 
-const input = "zzzzzzzzaaaatddddbhhhvvvaaaavvkkooooooooooiuhjkciiiiii"
+const input = "zzzzzzzzaaaatddddbhhhvvvaaaavvkkoooooooooonnnnnnnnnnmmmmmmmmmmiuhjkciiiiii"
 
 function find_longest_sequence(inputString) {
     let allDuplicates = []
@@ -27,24 +27,20 @@ function find_longest_sequence(inputString) {
         }
 
     }
-    results_sorted_by_value = sort_results_by_value(allDuplicates)
-    results_sorted_alphabetically = sort_top_results_alphabetically(results_sorted_by_value)
+    results_sorted_by_value = allDuplicates.sort((a, b) => b.amount - a.amount)
+    unique_top_result = get_alphabetical_unique_top_result(results_sorted_by_value)[0]
     
-    let resultObject = {}
+    let output = {}
 
-    let resultKey = results_sorted_alphabetically[0].char.toLowerCase()
-    let resultValue = results_sorted_alphabetically[0].amount
+    let resultKey = unique_top_result.char.toLowerCase()
+    let resultValue = unique_top_result.amount
 
-    resultObject[resultKey] = resultValue
+    output[resultKey] = resultValue
     
-    return resultObject
+    return output
 }
 
-function sort_results_by_value(results) {
-    return results.sort((a, b) => b.amount - a.amount);
-}
-
-function sort_top_results_alphabetically(results) {
+function get_alphabetical_unique_top_result(results) {
     let top_results = []
 
     for (let resultIndex = 0; resultIndex < results.length; resultIndex++) {
