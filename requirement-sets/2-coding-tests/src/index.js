@@ -29,34 +29,34 @@ function find_longest_sequence (inputString) {
       singleCharacterDuplicates = {}
     }
   }
-  let results_sorted_by_value = allDuplicates.sort((a, b) => b.amount - a.amount)
-  let unique_top_result = get_alphabetical_unique_top_result(results_sorted_by_value)[0]
+  const resultsSortedByValue = allDuplicates.sort((a, b) => b.amount - a.amount)
+  const uniqueTopResult = getAlphabeticalUniqueTopResult(resultsSortedByValue)[0]
 
   const output = {}
 
-  const resultKey = unique_top_result.char.toLowerCase()
-  const resultValue = unique_top_result.amount
+  const resultKey = uniqueTopResult.char.toLowerCase()
+  const resultValue = uniqueTopResult.amount
 
   output[resultKey] = resultValue
 
   return output
 }
 
-function get_alphabetical_unique_top_result (results) {
-  const top_results = []
+function getAlphabeticalUniqueTopResult (results) {
+  const topResults = []
 
   for (let resultIndex = 0; resultIndex < results.length; resultIndex++) {
     const thisEntry = results[resultIndex]
     let nextEntry = { amount: 0 }
 
-    top_results.push(thisEntry)
+    topResults.push(thisEntry)
 
     if (results[resultIndex + 1]) {
       nextEntry = results[resultIndex + 1]
     }
 
     if (thisEntry.amount !== nextEntry.amount) {
-      return top_results.sort((a, b) => a.char.localeCompare(b.char))
+      return topResults.sort((a, b) => a.char.localeCompare(b.char))
     }
   }
 }
