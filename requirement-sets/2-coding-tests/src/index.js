@@ -1,5 +1,3 @@
-// run the program
-
 function findLongestSequence (inputString) {
   const allCharacterCounts = []
   let singleCharacterCounts = {}
@@ -65,7 +63,6 @@ const resultOneCharRepeated = findLongestSequence(oneCharRepeated)
 const resultMultiCharRepeatedUnique = findLongestSequence(multiCharRepeatedUnique)
 const resultMultiCharRepeatedNonUnique = findLongestSequence(multiCharRepeatedNonUnique)
 
-// do not edit below this line
 module.exports = {
   a: resultOneCharNonRepeated,
   b: resultOneCharRepeated,
