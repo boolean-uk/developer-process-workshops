@@ -1,4 +1,4 @@
-const { a, b, c, d } = require('../src/index.js')
+const { a, b, c, d } = require('../src/find-longest-sequence.js')
 
 describe(':', () => {
     it('One character in input and not repeated', () => {
