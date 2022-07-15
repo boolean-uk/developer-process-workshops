@@ -59,7 +59,7 @@ async function processFileLineByLine (filePath) {
   }
 }
 
-processFileLineByLine(`./${inputFilename}`);
+processFileLineByLine(`./${inputFilename}`)
 
 module.exports = {
   // How do you test for a file?

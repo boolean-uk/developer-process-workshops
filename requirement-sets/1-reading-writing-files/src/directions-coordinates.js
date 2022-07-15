@@ -36,6 +36,8 @@ function countReturnToStart (lines) {
 
 const lines = ['W', 'WE', 'S', 'NSWE', 'NSN', 'NSSSSNNN', 'NSEEEEWWNWNINSWEN']
 
+console.log(countReturnToStart(lines))
+
 module.exports = {
   countReturnToStart
 }
