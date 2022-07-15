@@ -17,6 +17,6 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
-    "node-fetch": "^3.2.8"
+    "node-fetch": "^2.6.7"
   }
 }
