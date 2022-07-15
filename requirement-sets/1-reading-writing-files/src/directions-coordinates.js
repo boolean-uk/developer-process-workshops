@@ -10,22 +10,22 @@ function countReturnToStart (lines) {
     for (const letter of line) {
       switch (letter) {
         case 'W':
-          initialPosition["x"] += 1
+          initialPosition.x += 1
           break
         case 'E':
-          initialPosition["x"] -= 1
+          initialPosition.x -= 1
           break
         case 'N':
-          initialPosition["y"] += 1
+          initialPosition.y += 1
           break
         case 'S':
-          initialPosition["y"] -= 1
+          initialPosition.y -= 1
           break
         default:
           break
       }
     }
-    if (initialPosition["x"] === 0 && initialPosition["y"] === 0) {
+    if (initialPosition.x === 0 && initialPosition.y === 0) {
       initialPositionsCount++
     }
     initialPosition = { x: 0, y: 0 }
@@ -34,15 +34,7 @@ function countReturnToStart (lines) {
   return initialPositionsCount
 }
 
-const lines = [
-  'W',
-  'WE',
-  'S',
-  'NSWE',
-  'NSN',
-  'NSSSSNNN',
-  'NSEEEEWWNWNINSWEN'
-]
+const lines = ['W', 'WE', 'S', 'NSWE', 'NSN', 'NSSSSNNN', 'NSEEEEWWNWNINSWEN']
 
 module.exports = {
   countReturnToStart

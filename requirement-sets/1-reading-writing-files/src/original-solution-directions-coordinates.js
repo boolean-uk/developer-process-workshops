@@ -13,23 +13,23 @@ function evaluateinitialPosition (lines) {
   for (const letter of lines) {
     switch (letter) {
       case 'W':
-        initialPosition["x"] -= 1
+        initialPosition.x -= 1
         break
       case 'E':
-        initialPosition["x"] += 1
+        initialPosition.x += 1
         break
       case 'N':
-        initialPosition["y"] += 1
+        initialPosition.y += 1
         break
       case 'S':
-        initialPosition["y"] -= 1
+        initialPosition.y -= 1
         break
       default:
         break
     }
   }
 
-  if (initialPosition["x"] === 0 && initialPosition["y"] === 0) {
+  if (initialPosition.x === 0 && initialPosition.y === 0) {
     countInitialPositions++
   }
 }
