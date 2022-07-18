@@ -5,7 +5,7 @@ const fetch = require('node-fetch')
 const axios = require('axios')
 
 const dependencies = require('../__mocks__/dependencies.json')
-const organiseMaintainers = require('.');
+const organiseMaintainers = require('.index.js');
 const expected = [
   {
     username: 'gaearon',

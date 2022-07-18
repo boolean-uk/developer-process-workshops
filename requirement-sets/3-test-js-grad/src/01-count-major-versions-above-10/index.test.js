@@ -5,7 +5,7 @@ const fetch = require('node-fetch')
 const axios = require('axios')
 
 const dependencies = require('../__mocks__/dependencies.json')
-const countMajorVersionsAbove10 = require('.');
+const countMajorVersionsAbove10 = require('./index.js');
 
 describe('countMajorVersionsAbove10', () => {
   beforeEach(() => {

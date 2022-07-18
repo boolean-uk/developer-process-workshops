@@ -3,15 +3,18 @@ jest.mock('axios');
 
 const fetch = require('node-fetch')
 const axios = require('axios')
+const fs = require('fs');
 
 const dependencies = require('../__mocks__/dependencies.json')
-const oldestPackageName = require('.');
+const oldestPackageName = require('./index.js');
 
 describe('oldestPackageName', () => {
+  /*
   beforeEach(() => {
     fetch.mockReturnValue(Promise.resolve({json: () => Promise.resolve(dependencies)}))
     axios.get.mockReturnValue(Promise.resolve({ data: dependencies }))
   })
+  */
 
   it('returns the name of the package with the oldest date', async () => {
     const answer = await oldestPackageName()
