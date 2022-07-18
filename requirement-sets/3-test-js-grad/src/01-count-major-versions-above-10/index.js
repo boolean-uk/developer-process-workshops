@@ -13,7 +13,19 @@ GET https://api.npms.io/v2/search/suggestions?q=react
 */
 
 module.exports = async function countMajorVersionsAbove10() {
-  // TODO
 
-  return number
+  let foundPackageVersions = [];
+  let packageCount = 0
+
+  fs.readFile('../__mocks__/dependencies.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    const jsonData = JSON.parse(data);
+    jsonData.forEach((packageInData) => foundPackageVersions.push(packageInData.package.version.split('.')))
+    foundPackageVersions.map((version) => { if (Number(version[0]) >= 10) { packageCount++ } })
+    return packageCount
+  });
+
 };
