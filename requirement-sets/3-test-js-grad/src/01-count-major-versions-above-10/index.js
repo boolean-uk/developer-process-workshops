@@ -24,7 +24,7 @@ module.exports = async function countMajorVersionsAbove10() {
     }
     const jsonData = JSON.parse(data);
     jsonData.forEach((packageInData) => foundPackageVersions.push(packageInData.package.version.split('.')))
-    foundPackageVersions.map((version) => { if (Number(version[0]) >= 10) { packageCount++ } })
+    foundPackageVersions.map((version) => { if (parseInt(version[0]) >= 10) { packageCount++ } })
     return packageCount
   });
 
