@@ -1,0 +1,22 @@
+{
+  "name": "3-test-js-grad",
+  "version": "1.0.0",
+  "description": "Hello, thanks for taking the time to complete this exercise.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll --runInBand"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.19.0",
+    "jest": "^28.1.3",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "prettier-eslint": "^15.0.1"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "node-fetch": "^2.6.7"
+  }
+}
