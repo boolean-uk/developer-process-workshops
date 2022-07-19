@@ -11,54 +11,23 @@ GET https://api.npms.io/v2/search/suggestions?q=react
 
 */
 
+const axios = require('axios')
+
 module.exports = async function oldestPackageName() {
-  const fs = require('fs');
+  const { data } = await axios.get("https://api.npms.io/v2/search/suggestions?q=react")
 
-  let foundPackages = [];
+  let oldestPackage = {
+    name: data[0].package.name,
+    date: data[0].package.date
+  }
 
-  fs.readFile('../__mocks__/dependencies.json', 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      return;
+  data.map( thisPackage => {
+    if( new Date(thisPackage.package.date) <  new Date(oldestPackage.date) ) {
+      oldestPackage = {
+        name: thisPackage.package.name,
+        date: thisPackage.package.date
+      }
     }
-    const jsonData = JSON.parse(data);
-    jsonData.forEach((packageInData) => foundPackages.push({ name: packageInData.package.name, date: packageInData.package.date }))
-    foundPackages.sort(
-      function (a, b) {
-        var keyA = new Date(a.date),
-          keyB = new Date(b.date);
-        if (keyA < keyB) return -1;
-        if (keyA > keyB) return 1;
-        return 0;
-      }
-    )
-    return foundPackages[foundPackages.length - 1].name
-  });
-};
-
-/* Please find the solution for online package data using Axios below. */
-
-/*
-const axios = require('axios');
-let foundPackagesAxios = [];
-module.exports = async function oldestPackageName() {
-  axios
-  .get('https://api.npms.io/v2/search/suggestions?q=react')
-  .then(res => {
-    res.data.forEach( (packageInData) => foundPackagesAxios.push( {name: packageInData.package.name, date: packageInData.package.date}) );
-    foundPackagesAxios.sort(
-      function(a, b) {
-        var keyA = new Date(a.date),
-          keyB = new Date(b.date);
-        if (keyA < keyB) return -1;
-        if (keyA > keyB) return 1;
-        return 0;
-      }
-    )
-    return foundPackagesAxios[foundPackagesAxios.length - 1].name
   })
-  .catch(error => {
-    console.error(error);
-  });
+  return oldestPackage.name
 };
-*/

@@ -23,8 +23,28 @@ GET https://api.npms.io/v2/search/suggestions?q=react
 
 */
 
-module.exports = async function organiseMaintainers() {
-  // TODO
+const axios = require('axios')
 
+module.exports = async function organiseMaintainers() {
+  let allMaintainers = []
+  let maintainers = []
+  const { data } = await axios.get("https://api.npms.io/v2/search/suggestions?q=react")
+  data.map(element => {
+    element.package.maintainers.forEach( oneMaintainer => {
+      if( allMaintainers[oneMaintainer.username] ) {
+        allMaintainers[oneMaintainer.username].push(element.package.name)
+      } else {
+        allMaintainers[oneMaintainer.username] = [element.package.name]
+      }
+    })
+  });
+  for(let oneMaintainer in allMaintainers) {
+    maintainers.push(
+      {
+        username: oneMaintainer,
+        packageNames: allMaintainers[oneMaintainer]
+      }
+    )
+  }
   return maintainers
 };

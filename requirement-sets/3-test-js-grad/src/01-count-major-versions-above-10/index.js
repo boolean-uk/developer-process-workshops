@@ -12,20 +12,17 @@ GET https://api.npms.io/v2/search/suggestions?q=react
 
 */
 
+const axios = require('axios')
+
 module.exports = async function countMajorVersionsAbove10() {
-
-  let foundPackageVersions = [];
-  let packageCount = 0
-
-  fs.readFile('../__mocks__/dependencies.json', 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      return;
+  let number = 0
+  const { data } = await axios.get("https://api.npms.io/v2/search/suggestions?q=react")
+  data.forEach(element => {
+    let thisElement = Number(element.package.version.split('.')[0])
+    if (thisElement >= 10) {
+      number++
     }
-    const jsonData = JSON.parse(data);
-    jsonData.forEach((packageInData) => foundPackageVersions.push(packageInData.package.version.split('.')))
-    foundPackageVersions.map((version) => { if (parseInt(version[0]) >= 10) { packageCount++ } })
-    return packageCount
   });
 
+  return number
 };
