@@ -30,8 +30,7 @@ module.exports = async function organiseMaintainers() {
   const { data } = await axios.get("https://api.npms.io/v2/search/suggestions?q=react")
   data.map(dependency => {
     dependency.package.maintainers.forEach(maintainer => {
-      let maintainerIndex = -1
-      maintainerIndex = maintainers.findIndex(maintainerInMaintainers => maintainerInMaintainers.username === maintainer.username)
+      const maintainerIndex = maintainers.findIndex(maintainerInMaintainers => maintainerInMaintainers.username === maintainer.username)
       if (maintainerIndex !== -1) {
         maintainers[maintainerIndex].packageNames.push(dependency.package.name)
       } else {
