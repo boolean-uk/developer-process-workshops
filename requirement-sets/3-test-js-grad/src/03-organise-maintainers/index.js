@@ -29,40 +29,30 @@ GET https://api.npms.io/v2/search/suggestions?q=react
 
 const axios = require('axios');
 
-const findOrCreateMaintainer = (maintainers, maintainer) => {
-  const foundMaintainer = maintainers.find((entry) => {
-    return entry.username === maintainer;
-  });
-
-  if (foundMaintainer) return foundMaintainer;
-
-  const createdMaintainer = { username: maintainer, packageNames: [] };
-  maintainers.push(createdMaintainer);
-  return createdMaintainer;
-};
-
-const addMaintainerForPackage = (maintainers, packageName, maintainer) => {
-  const packages = findOrCreateMaintainer(maintainers, maintainer).packageNames;
-  packages.push(packageName);
-};
-
 module.exports = async function organiseMaintainers() {
+  let maintainers = [];
+
   const { data } = await axios.get(
     'https://api.npms.io/v2/search/suggestions?q=react'
   );
 
-  console.log('DATA : ', JSON.stringify(data[0], null, 2));
-  let maintainers = [];
-
-  data.forEach((item) => {
-    let packageName = item.package.name;
-    item.package.maintainers.forEach((maintainer) => {
-      let username = maintainer.username;
-      addMaintainerForPackage(maintainers, packageName, username);
+  data.forEach((dep) => {
+    dep.package.maintainers.forEach((maintainer) => {
+      const record = maintainers.find((obj) => {
+        return obj.username === maintainer.username;
+      });
+      if (!record) {
+        const newRecord = {
+          username: maintainer.username,
+          packageNames: [dep.package.name],
+        };
+        maintainers.push(newRecord);
+      } else {
+        record.packageNames.push(dep.package.name);
+      }
     });
-    return maintainers;
   });
 
-  console.log(maintainers);
+  // console.log('DATA : ', JSON.stringify(data[0], null, 2));
   return maintainers;
 };

@@ -15,34 +15,16 @@ GET https://api.npms.io/v2/search/suggestions?q=react
 const axios = require('axios');
 
 module.exports = async function countMajorVersionsAbove10() {
-  const versions = [];
-  const splitStr = [];
-
   try {
-    const res = await axios.get(
+    const { data } = await axios.get(
       'https://api.npms.io/v2/search/suggestions?q=react'
     );
-    const data = res.data;
+    const answer = data
+      .map((el) => el.package.version.split('.')[0])
+      .filter((el) => Number(el) >= 10).length;
 
-    // const majorVersions = data.map((dep) => {
-    //   return dep.package.version.split('.')[0];
-    // });
-
-    // const above10 = majorVersions.filter(
-    //   (number) => Number(number) >= 10
-    // ).length;
-
-    data.forEach((el) => versions.push(el.package.version));
-    versions.forEach((str) => splitStr.push(str.split('.')));
-
-    const answer = splitStr.filter(
-      (el) =>
-        Number(el[0]) >= 10 &&
-        (Number(el[1]) > 0 || Number(el[2]) > 0 || Number(el[3]) > 0)
-    ).length;
     return answer;
   } catch (err) {
     console.log(err);
   }
-  return answer;
 };
