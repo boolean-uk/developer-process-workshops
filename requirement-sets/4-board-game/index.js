@@ -36,10 +36,9 @@ const movePiece = (intructionsStr) => {
     currentCoords = currentCoords.map((coord, i) => {
       const step = directions[currentDirection].move[i];
 
-      if (isValidMove(coord, step)) {
-        return coord + step;
-      }
-      return coord;
+      if (!isValidMove(coord, step)) return coord;
+
+      return coord + step;
     });
   }
 
