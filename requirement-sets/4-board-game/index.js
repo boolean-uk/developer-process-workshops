@@ -1,11 +1,3 @@
-// coordinate format: x, y, direction
-// 4 directions N, S, E and W
-
-// N = (0, +1)
-// E = (+1, 0)
-// S = (0, -1)
-// W = (-1, 0);
-
 const directions = {
   N: {
     move: [0, 1],
@@ -42,8 +34,10 @@ const movePiece = (intructionsStr) => {
     }
 
     currentCoords = currentCoords.map((coord, i) => {
-      if (isValidMove(coord, directions[currentDirection].move[i])) {
-        return coord + directions[currentDirection].move[i];
+      const step = directions[currentDirection].move[i];
+
+      if (isValidMove(coord, step)) {
+        return coord + step;
       }
       return coord;
     });
