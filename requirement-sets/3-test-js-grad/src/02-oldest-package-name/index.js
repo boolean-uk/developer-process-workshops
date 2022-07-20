@@ -13,15 +13,13 @@ GET https://api.npms.io/v2/search/suggestions?q=react
 const axios = require("axios");
 
 module.exports = async function oldestPackageName() {
-  const res = await axios.get(
+  const { data } = await axios.get(
     "https://api.npms.io/v2/search/suggestions?q=react"
   );
 
-  const data = res.data;
-
-  const sortedDataByDate = data.sort((a, b) => {
-    return new Date(a.package.date) - new Date(b.package.date);
-  });
+  const sortedDataByDate = data.sort(
+    (a, b) => new Date(a.package.date) - new Date(b.package.date)
+  );
 
   const oldestPackage = sortedDataByDate[0].package;
 
