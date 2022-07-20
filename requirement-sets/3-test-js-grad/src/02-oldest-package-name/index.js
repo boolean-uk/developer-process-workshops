@@ -10,9 +10,18 @@ GET https://api.npms.io/v2/search/suggestions?q=react
 *  the "name" of the package that has the oldest "date" value
 
 */
+const axios = require("axios");
 
 module.exports = async function oldestPackageName() {
-  // TODO
+  const { data } = await axios.get(
+    "https://api.npms.io/v2/search/suggestions?q=react"
+  );
 
-  return name
+  const sortedDataByDate = data.sort(
+    (a, b) => new Date(a.package.date) - new Date(b.package.date)
+  );
+
+  const oldestPackage = sortedDataByDate[0].package;
+
+  return oldestPackage.name;
 };
