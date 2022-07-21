@@ -2,6 +2,10 @@
 
 * Make the following HTTP request with either axios or node-fetch:
 
+/*
+
+* Make the following HTTP request with either axios or node-fetch:
+
 GET https://api.npms.io/v2/search/suggestions?q=react
 
 ******
@@ -23,8 +27,32 @@ GET https://api.npms.io/v2/search/suggestions?q=react
 
 */
 
-module.exports = async function organiseMaintainers() {
-  // TODO
+const axios = require('axios');
 
-  return maintainers
+module.exports = async function organiseMaintainers() {
+  let maintainers = [];
+
+  const { data } = await axios.get(
+    'https://api.npms.io/v2/search/suggestions?q=react'
+  );
+
+  data.forEach((dep) => {
+    dep.package.maintainers.forEach((maintainer) => {
+      const record = maintainers.find((obj) => {
+        return obj.username === maintainer.username;
+      });
+      if (!record) {
+        const newRecord = {
+          username: maintainer.username,
+          packageNames: [dep.package.name],
+        };
+        maintainers.push(newRecord);
+      } else {
+        record.packageNames.push(dep.package.name);
+      }
+    });
+  });
+
+  // console.log('DATA : ', JSON.stringify(data[0], null, 2));
+  return maintainers;
 };
