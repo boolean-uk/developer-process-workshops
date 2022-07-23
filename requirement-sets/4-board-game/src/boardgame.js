@@ -45,7 +45,7 @@ class Player {
     this.movementLimits = boardLimits
   }
 
-  getPlayerData () {
+  getPlayer () {
     return [
       this.xPlayerPosition,
       this.yPlayerPosition,
@@ -53,8 +53,8 @@ class Player {
     ]
   }
 
-  setPlayerMoves (moves) {
-    const steps = moves.split('')
+  commandPlayer (commands) {
+    const steps = commands.split('')
 
     for (let step of steps) {
       step = step.toUpperCase()
@@ -83,6 +83,7 @@ class Player {
       this.yPlayerPosition < this.movementLimits.yMaxPosition) {
       yMovement = MOVEMENTS[this.playerDirection].yDiff
     }
+
     return {
       xMove: xMovement,
       yMove: yMovement
