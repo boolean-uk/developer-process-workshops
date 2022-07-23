@@ -60,28 +60,37 @@ class Player {
       step = step.toUpperCase()
 
       if (step === 'M') {
-        this.movePlayer()
+        this.xPlayerPosition += this.#movePlayer().xMove
+        this.yPlayerPosition += this.#movePlayer().yMove
       }
 
       if (step === 'L' || step === 'R') {
-        this.turnPlayer(step)
+        this.playerDirection = this.#turnPlayer(step)
       }
     }
   }
 
-  movePlayer () {
+  #movePlayer () {
+    let xMovement = 0
+    let yMovement = 0
+
     if (this.xPlayerPosition + MOVEMENTS[this.playerDirection].xDiff > 0 &&
-        this.xPlayerPosition < this.movementLimits.xMaxPosition) {
-      this.xPlayerPosition += MOVEMENTS[this.playerDirection].xDiff
+      this.xPlayerPosition < this.movementLimits.xMaxPosition) {
+      xMovement = MOVEMENTS[this.playerDirection].xDiff
     }
+
     if (this.yPlayerPosition + MOVEMENTS[this.playerDirection].yDiff > 0 &&
-        this.yPlayerPosition < this.movementLimits.yMaxPosition) {
-      this.yPlayerPosition += MOVEMENTS[this.playerDirection].yDiff
+      this.yPlayerPosition < this.movementLimits.yMaxPosition) {
+      yMovement = MOVEMENTS[this.playerDirection].yDiff
+    }
+    return {
+      xMove: xMovement,
+      yMove: yMovement
     }
   }
 
-  turnPlayer (turnDirection) {
-    this.playerDirection = TURNS[turnDirection][this.playerDirection]
+  #turnPlayer (turnDirection) {
+    return TURNS[turnDirection][this.playerDirection]
   }
 }
 
