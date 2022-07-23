@@ -64,7 +64,7 @@ class Player {
                 continue
             }
 
-            this.playerDirection = TURNS[step][this.playerDirection]
+            this.turnPlayer(step)            
         }
         this.checkForLowerLimits()
     }
@@ -85,6 +85,10 @@ class Player {
         if (this.yPlayerPosition < this.movementLimits.yMaxPosition) {
             this.yPlayerPosition += MOVEMENTS[this.playerDirection].yDiff
         }
+    }
+
+    turnPlayer(turnDirection) {
+        this.playerDirection = TURNS[turnDirection][this.playerDirection]
     }
 
 }
