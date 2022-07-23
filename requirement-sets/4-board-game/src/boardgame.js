@@ -53,29 +53,48 @@ class Player {
         ]
     }
 
-    movePlayer(moves) {
+    setPlayerMoves(moves) {
         const steps = moves.split('')
 
         for (let step of steps) {
             step = step.toUpperCase()
 
-            if(step === 'M') {
-                if (this.xPlayerPosition < this.movementLimits.xMaxPosition) {
-                    this.xPlayerPosition += MOVEMENTS[this.playerDirection].xDiff
-                }
-                if (this.yPlayerPosition < this.movementLimits.yMaxPosition) {
-                    this.yPlayerPosition += MOVEMENTS[this.playerDirection].yDiff
-                }
+            if (step === 'M') {
+                this.movePlayer()
                 continue
             }
 
             this.playerDirection = TURNS[step][this.playerDirection]
         }
+        this.checkForLowerLimits()
+    }
+
+    checkForLowerLimits() {
+        if (this.xPlayerPosition < 0) {
+            this.xPlayerPosition = 0
+        }
+        if (this.yPlayerPosition < 0) {
+            this.yPlayerPosition = 0
+        }
+    }
+
+    movePlayer() {
+        if (this.xPlayerPosition < this.movementLimits.xMaxPosition) {
+            this.xPlayerPosition += MOVEMENTS[this.playerDirection].xDiff
+        }
+        if (this.yPlayerPosition < this.movementLimits.yMaxPosition) {
+            this.yPlayerPosition += MOVEMENTS[this.playerDirection].yDiff
+        }
     }
 
 }
 
+const playerThree = new Player(BOARD_DIMENSIONS)
+playerThree.movePlayer('RMMMMM')
+
+console.log(playerThree.getPlayerData())
+
 module.exports = {
     BOARD_DIMENSIONS,
     Player
-  }
+}
