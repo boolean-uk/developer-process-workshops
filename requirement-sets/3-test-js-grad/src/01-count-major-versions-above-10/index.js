@@ -23,6 +23,5 @@ module.exports = async function countMajorVersionsAbove10() {
       number++
     }
   });
-
   return number
 };
