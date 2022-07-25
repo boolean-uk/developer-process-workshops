@@ -12,7 +12,7 @@ describe("Board", () => {
   })
   describe("#initialisation()", () => {
     it('returns an initial board', () => {
-      expect(board.position).toEqual(expected)
+      expect(board.calculatePosition()).toEqual(expected)
     })
   })
   describe('#move()', () => {

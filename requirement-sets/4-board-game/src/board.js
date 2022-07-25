@@ -1,52 +1,26 @@
 const moves = {
-  'N': {
-    y: -1,
-    x: 0
-  },
-  'E': {
-    y: 0,
-    x: 1
-  },
-  'S': {
-    y: 1,
-    x: 0
-  },
-  'W': {
-    y: 1,
-    x: -1
-  }
+  'N': { y: -1, x: 0 },
+  'E': { y: 0, x: 1 },
+  'S': { y: 1, x: 0 },
+  'W': { y: 0, x: -1 }
 }
-const directions = [ 'N', 'E', 'S', 'W' ]
-const initial = {
-  y: 4,
-  x: 0,
-  direction: directions[0]
-}
+const directions = Object.keys(moves)
+const initial = { y: 4, x: 0, direction: directions[0] }
 
 class Board {
   constructor(startingPoint = {...initial}) {
-    this.position = startingPoint
+    this.moves = [startingPoint]
     this.currentDirection = directions.indexOf(startingPoint.direction)
-  }
-
-  getDirection() {
-    return directions[this.currentDirection % directions.length]
+    this.commands = {
+      'R': () => { this.currentDirection++ },
+      'L': () => { this.currentDirection-- },
+      'M': () => { this.moves.push(this.getMove()) }
+    }
   }
 
   move(str) {
-    str.split('').forEach(char => {
-      if (char === 'R') {
-        this.currentDirection++
-        this.position.direction = this.getDirection()
-      } else if (char === 'L') {
-        this.currentDirection--
-        this.position.direction = this.getDirection()
-      } else if (char === 'M') {
-        const move = this.getMove()
-        this.updatePosition(move)
-      }
-    })
-    return this.position
+    str.split('').forEach(char => this.commands[char]())
+    return this.calculatePosition()
   }
 
   getMove() {
@@ -54,9 +28,15 @@ class Board {
     return moves[heading]
   }
 
-  updatePosition(move) {
-    this.position.y = this.validate(this.position.y + move.y)
-    this.position.x = this.validate(this.position.x + move.x)
+  calculatePosition() {
+    const position = this.moves.reduce((a, b) => {
+      return {
+        x: this.validate(a.x + b.x),
+        y: this.validate(a.y + b.y)
+      }
+    }, { x: 0, y: 0 })
+    position.direction = directions[this.currentDirection % directions.length]
+    return position
   }
 
   validate(value) {
