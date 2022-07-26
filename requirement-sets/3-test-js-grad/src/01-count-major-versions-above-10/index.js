@@ -12,8 +12,16 @@ GET https://api.npms.io/v2/search/suggestions?q=react
 
 */
 
-module.exports = async function countMajorVersionsAbove10() {
-  // TODO
+const axios = require('axios')
 
+module.exports = async function countMajorVersionsAbove10() {
+  let number = 0
+  const { data } = await axios.get("https://api.npms.io/v2/search/suggestions?q=react")
+  data.forEach(element => {
+    let thisElement = Number(element.package.version.split('.')[0])
+    if (thisElement >= 10) {
+      number++
+    }
+  });
   return number
 };
