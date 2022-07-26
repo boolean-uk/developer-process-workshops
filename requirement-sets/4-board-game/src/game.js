@@ -7,26 +7,35 @@ const moves = {
 const directions = Object.keys(moves)
 const initial = { y: 4, x: 0, direction: directions[0] }
 
-class Board {
-  constructor(startingPoint = {...initial}) {
-    this.moves = [startingPoint]
-    this.currentDirection = directions.indexOf(startingPoint.direction)
+class Game {
+  constructor(board = new Board()) {
+    this.board = board
     this.commands = {
-      'R': () => { this.currentDirection++ },
-      'L': () => { this.currentDirection-- },
-      'M': () => { this.moves.push(this.getMove()) }
+      'R': () => { board.updateDirection(1) },
+      'L': () => { board.updateDirection(-1) },
+      'M': () => { board.addMove(this.getMove()) }
     }
   }
 
   move(str) {
     str.split('').forEach(char => this.commands[char]())
-    return this.calculatePosition()
+    return this.board.calculatePosition()
   }
 
   getMove() {
-    const heading = directions[this.currentDirection % directions.length]
+    const heading = directions[this.board.currentDirection % directions.length]
     return moves[heading]
   }
+}
+
+class Board {
+  constructor(startingPoint = {...initial}) {
+    this.moves = [startingPoint]
+    this.currentDirection = directions.indexOf(startingPoint.direction)
+  }
+
+  addMove(move) { this.moves.push(move) }
+  updateDirection(val) { this.currentDirection += val }
 
   calculatePosition() {
     const position = this.moves.reduce((a, b) => {
@@ -46,4 +55,4 @@ class Board {
   }
 }
 
-module.exports = Board
+module.exports = Game

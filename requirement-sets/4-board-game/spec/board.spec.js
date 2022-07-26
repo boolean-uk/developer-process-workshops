@@ -1,9 +1,9 @@
-const Board = require('../src/board.js')
+const Game = require('../src/game.js')
 
-describe("Board", () => {
-  let board, expected
+describe("game", () => {
+  let game, expected
   beforeEach(() => {
-    board = new Board()
+    game = new Game()
     expected = {
       y: 4,
       x: 0,
@@ -11,8 +11,8 @@ describe("Board", () => {
     }
   })
   describe("#initialisation()", () => {
-    it('returns an initial board', () => {
-      expect(board.calculatePosition()).toEqual(expected)
+    it('returns an initial game', () => {
+      expect(game.board.calculatePosition()).toEqual(expected)
     })
   })
   describe('#move()', () => {
@@ -21,21 +21,21 @@ describe("Board", () => {
       expected.x = 2
       expected.direction = 'E'
 
-      expect(board.move('MRMLMRM')).toEqual(expected)
+      expect(game.move('MRMLMRM')).toEqual(expected)
     })
     it("RMMMLMM", () => {
       expected.y = 2
       expected.x = 3
       expected.direction = 'N'
 
-      expect(board.move('RMMMLMM')).toEqual(expected)
+      expect(game.move('RMMMLMM')).toEqual(expected)
     })
     it("MMMMM", () => {
       expected.y = 0
       expected.x = 0
       expected.direction = 'N'
 
-      expect(board.move('MMMMM')).toEqual(expected)
+      expect(game.move('MMMMM')).toEqual(expected)
     })
   })
 })
