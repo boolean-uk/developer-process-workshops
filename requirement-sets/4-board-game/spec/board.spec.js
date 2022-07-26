@@ -5,28 +5,24 @@ describe("board game", () => {
   beforeEach(() => {
     board = new Board()
   })
-  it("MRMLMRM", () => {
-    const expected = {
-      x: 2,
-      y: 2,
-      direction: 'E'
-    }
-    expect(board.move('MRMLMRM')).toEqual(expected)
-  })
-  it("RMMMLMM", () => {
-    const expected = {
-      x: 3,
-      y: 2,
-      direction: 'N'
-    }
-    expect(board.move('RMMMLMM')).toEqual(expected)
-  })
-  it("MMMMM", () => {
+  it("M", () => {
     const expected = {
       x: 0,
-      y: 4,
+      y: 1,
       direction: 'N'
     }
-    expect(board.move('MMMMM')).toEqual(expected)
+    board.addMove({x: 0, y: 1 })
+    expect(board.calculatePosition()).toEqual(expected)
+  })
+  it("RM", () => {
+    const expected = {
+      x: 1,
+      y: 0,
+      direction: 'E'
+    }
+    board.addRotation(1)
+    board.addMove({x: 1, y:0 })
+
+    expect(board.calculatePosition()).toEqual(expected)
   })
 })

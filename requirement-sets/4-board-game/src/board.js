@@ -1,32 +1,17 @@
-const movements = {
-  'N': { y: 1, x: 0},
-  'E': { y: 0, x: 1},
-  'S': { y: -1, x: 0},
-  'W': { y: 0, x: -1},
-}
-const directions = Object.keys(movements)
-const initial = { x: 0, y: 0 }
+const { directions, initial } = require('./constants.js')
 
 class Board {
   constructor(startingPoint = initial) {
     this.moves = [startingPoint]
-    this.currentDirection = 0
+    this.rotations = []
   }
 
-  move(str) {
-    // this reponsibility (parsing of input)
-    str.split('').forEach(char => {
-      if (char === 'R') {
-        this.currentDirection++
-      } else if (char === 'L') {
-        this.currentDirection--
-      } else if (char === 'M') {
-        const heading = directions[this.currentDirection % directions.length]
-        const move = movements[heading]
-        this.moves.push(move)
-      }
-    })
-    return this.calculatePosition()
+  addMove(move) { this.moves.push(move) }
+  addRotation(rotation) { this.rotations.push(rotation) }
+
+  getDirection() {
+    const directionIndex = this.rotations.reduce((a,b) => a+b, 0)
+    return directions[directionIndex % directions.length]
   }
 
   calculatePosition() {
@@ -36,7 +21,7 @@ class Board {
         y: this.validate(a.y + b.y),
       }
     }, { x: 0, y: 0 })
-    position.direction = directions[this.currentDirection % directions.length]
+    position.direction = this.getDirection()
     return position
   }
 
