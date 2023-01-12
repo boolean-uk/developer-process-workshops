@@ -1,9 +1,10 @@
 import './App.css';
+import PlaceDetails from './components/PlaceDetails';
 
 function App() {
   return (
     <div className='App'>
-      <h1>Hello</h1>
+      <PlaceDetails />
     </div>
   );
 }

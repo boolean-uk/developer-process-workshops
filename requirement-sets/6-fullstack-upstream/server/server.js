@@ -1,6 +1,9 @@
 const express = require('express');
+const cors = require('cors');
 const request = require('request');
 const app = express();
+
+app.use(cors());
 
 app.get('/place/:id', (req, res) => {
   const placeId = req.params.id;
