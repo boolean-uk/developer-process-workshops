@@ -5,6 +5,16 @@ const app = express();
 
 app.use(cors());
 
+const daysOfWeek = [
+  'sunday',
+  'monday',
+  'tuesday',
+  'wednesday',
+  'thursday',
+  'friday',
+  'saturday',
+];
+
 app.get('/place/:id', (req, res) => {
   const placeId = req.params.id;
   const apiUrl = `https://storage.googleapis.com/coding-session-rest-api/${placeId}`;
@@ -18,10 +28,14 @@ app.get('/place/:id', (req, res) => {
     const name = body.displayed_what;
     const address = body.displayed_where;
     const openingHours = body.opening_hours;
-    res.json({ name, address, openingHours });
+    const closedDay = daysOfWeek.filter(
+      (el) => !Object.keys(openingHours.days).includes(el)
+    );
+
+    res.json({ name, address, openingHours, closedDay });
   });
 });
 
-app.listen(3000, () => {
-  console.log('Backend service running on port 3000');
+app.listen(3001, () => {
+  console.log('Backend service running on port 3001');
 });
