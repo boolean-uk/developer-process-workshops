@@ -10,7 +10,6 @@ function PlaceDetails() {
   const [closedDay, setClosedDay] = useState('');
 
   const fetchPlaceData = async () => {
-    console.log('FETCH');
     const apiUrl = `http://localhost:3001/place/${validId}`;
     try {
       const response = await axios.get(apiUrl);
@@ -43,9 +42,10 @@ function PlaceDetails() {
   return (
     <div>
       <form>
-        <label>Place ID:</label>
+        <label>Fetch data by an ID, or click radio button for valid ID's</label>
         <div>
           <input type='text' onChange={handleTextChange} />
+          <button onClick={fetchPlaceData}>Fetch Place Data</button>
           <input
             type='radio'
             value='Casa Ferlin'
@@ -61,7 +61,6 @@ function PlaceDetails() {
           />
           Le Cafe du Marche
         </div>
-        <button onClick={fetchPlaceData}>Fetch Place Data</button>
       </form>
       {placeData && (
         <div>

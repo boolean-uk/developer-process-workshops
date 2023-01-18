@@ -32,7 +32,7 @@ app.get('/place/:id', (req, res) => {
       (el) => !Object.keys(openingHours.days).includes(el)
     );
 
-    res.json({ name, address, openingHours, closedDay });
+    res.status(200).json({ name, address, openingHours, closedDay });
   });
 });
 
