@@ -1,7 +1,8 @@
 import React from 'react';
+import './landing-page.css';
 
 const LandingPage = () => {
-  return <div>{process.env.REACT_APP_GOOGLE_API}</div>;
+  return <div className='landing-page'>Landing Page</div>;
 };
 
 export default LandingPage;

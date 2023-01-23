@@ -1,38 +1,16 @@
-.App {
-  text-align: center;
-}
+:root {
+  --form-background: rgb(205, 231, 237);
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+  --tab-one: rgb(37, 165, 117);
+  --tab-two: rgb(37, 149, 165);
+  --tab-three: rgb(58, 113, 155);
+  --tab-four: rgb(37, 75, 122);
+  --tab-five: rgb(20, 43, 88);
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+  --primary-font: rgb(11, 43, 91);
+  --secondary-font: rgb(58, 113, 155);
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  --asterisk: rgb(243, 112, 33);
+  --address: rgb(78, 97, 112);
+  --icons: rgb(184, 199, 204);
 }
