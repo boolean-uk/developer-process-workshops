@@ -1,3 +1,4 @@
 .accordion-wrapper {
-  width: 32rem;
+  display: grid;
+  place-items: center;
 }

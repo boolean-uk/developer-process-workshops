@@ -9,6 +9,8 @@ import {
   Typography,
 } from '@mui/material';
 
+import FormInput from './FormInput';
+
 const AccordionComponent = () => {
   const [expanded, setExpanded] = useState(false);
 
@@ -25,51 +27,7 @@ const AccordionComponent = () => {
           <Typography>Tab one</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <AutoComplete />
-        </AccordionDetails>
-      </Accordion>
-      <Accordion
-        expanded={expanded === 'tab-two'}
-        onChange={handleChange('tab-two')}
-      >
-        <AccordionSummary id='tab-two' aria-controls='panel-content'>
-          <Typography>Tab Two</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <AutoComplete />
-        </AccordionDetails>
-      </Accordion>
-      <Accordion
-        expanded={expanded === 'tab-three'}
-        onChange={handleChange('tab-three')}
-      >
-        <AccordionSummary id='tab-three' aria-controls='panel-content'>
-          <Typography>Tab Three</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <AutoComplete />
-        </AccordionDetails>
-      </Accordion>
-      <Accordion
-        expanded={expanded === 'tab-four'}
-        onChange={handleChange('tab-four')}
-      >
-        <AccordionSummary id='tab-four' aria-controls='panel-content'>
-          <Typography>Tab Four</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <AutoComplete />
-        </AccordionDetails>
-      </Accordion>
-      <Accordion
-        expanded={expanded === 'tab-five'}
-        onChange={handleChange('tab-five')}
-      >
-        <AccordionSummary id='tab-five' aria-controls='panel-content'>
-          <Typography>Tab Five</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <AutoComplete />
+          <FormInput />
         </AccordionDetails>
       </Accordion>
     </div>
