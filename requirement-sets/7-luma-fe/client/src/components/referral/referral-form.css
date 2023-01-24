@@ -1,5 +1,34 @@
+p {
+  margin: 0;
+}
+
+.form-wrapper {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  color: var(--primary-font);
+  text-align: center;
+}
+
 .form-heading {
-  width: 1280px;
-  height: 196px;
   background-color: #ffffff;
+  font-size: 26px;
+  line-height: 40px;
+
+  margin: 56px 0 60px 0;
+}
+
+.form-main {
+  height: calc(100vh - 196px);
+  background-color: var(--form-background);
+}
+
+.paragraph-one {
+  font-size: 24px;
+  line-height: 32px;
+  padding-top: 34px;
+}
+
+.paragraph-two {
+  font-size: 20px;
+  line-height: 32px;
 }

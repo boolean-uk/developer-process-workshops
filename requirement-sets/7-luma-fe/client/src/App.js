@@ -5,6 +5,8 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import './App.css';
+import 'normalize.css';
+
 import LandingPage from './components/landing/LandingPage.js';
 import ReferralForm from './components/referral/ReferralForm.js';
 
