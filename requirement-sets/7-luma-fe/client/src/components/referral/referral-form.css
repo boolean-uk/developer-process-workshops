@@ -18,7 +18,7 @@ p {
 }
 
 .form-main {
-  height: calc(100vh - 196px);
+  height: calc(150vh - 196px);
   background-color: var(--form-background);
 }
 

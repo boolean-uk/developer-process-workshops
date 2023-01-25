@@ -1,13 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field } from 'formik';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  FormControl,
-  InputLabel,
-  Input,
-  Button,
-  TextField,
-} from '@material-ui/core';
+import { FormControl, InputLabel, Input, Button } from '@material-ui/core';
 import {
   AccountCircle as FirstNameIcon,
   CalendarToday as DateOfBirthIcon,
@@ -48,17 +43,22 @@ const useStyles = makeStyles((theme) => ({
   },
   inputIcon: {
     marginRight: theme.spacing(1),
-    color: 'var(--secondary-font)',
+    color: 'var(--icons)',
   },
   dateInput: {
     marginRight: theme.spacing(1),
     color: 'var(--secondary-font)',
-    fontSize: '108px',
   },
 }));
 
 const FormInput = () => {
   const classes = useStyles();
+  const [isFocused, setIsFocused] = useState(false);
+  const [isBlur, setIsBlur] = useState(false);
+
+  const [contactData, setContactData] = useState([]);
+
+  const [contactDataToRender, setContactDataToRender] = useState([]);
 
   const initialValues = {
     Patient: {
@@ -72,11 +72,11 @@ const FormInput = () => {
       //   day: '',
       // },
       address1: '', // line 1. eg. 123 fake street
-      address2: '', // line 2. eg. suite 500
-      city: '',
-      state: '',
-      zipcode: '',
-      country: '',
+      // address2: '', // line 2. eg. suite 500
+      // city: '',
+      // state: '',
+      // zipcode: '',
+      // country: '',
       language: '',
       contacts: [
         {
@@ -92,12 +92,43 @@ const FormInput = () => {
     },
   };
 
+  const handleCustomOnFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleCustomOnBlur = () => {
+    setIsBlur(false);
+  };
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/contacts`)
+      .then(function (response) {
+        setContactDataToRender(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+
+  const postToDb = () => {
+    axios
+      .post(`http://localhost:8000/contacts`, contactData)
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={(values, { setValues }) => {
-        console.log(values);
+        setContactData([...contactData, values]);
+        console.log(contactData);
         setValues({ ...initialValues });
+        setIsFocused(false);
+        setIsBlur(false);
+        postToDb();
       }}
     >
       {({ handleChange, values, handleSubmit }) => (
@@ -132,6 +163,15 @@ const FormInput = () => {
                 name='Patient.dateOfBirth'
                 onChange={handleChange}
                 value={values.Patient.dateOfBirth}
+                onFocus={handleCustomOnFocus}
+                onBlur={handleCustomOnBlur}
+                style={{
+                  color:
+                    !isFocused && !isBlur
+                      ? 'var(--transparent)'
+                      : 'var(----secondary-font)',
+                  marginLeft: '4px',
+                }}
               />
             </FormControl>
 
@@ -179,7 +219,7 @@ const FormInput = () => {
           <div className={classes.rightColumn}>
             <FormControl className={classes.inputField}>
               <InputLabel className={classes.inputLabel}>
-                <LastNameIcon className={classes.inputIcon} />
+                <FirstNameIcon className={classes.inputIcon} />
                 Last Name
                 <span style={{ color: 'var( --asterisk)', marginLeft: '4px' }}>
                   *

@@ -13,6 +13,8 @@
   --asterisk: rgb(243, 112, 33);
   --address: rgb(78, 97, 112);
   --icons: rgb(184, 199, 204);
+
+  --transparent: rgba(255, 255, 255, 0);
 }
 
 * {
