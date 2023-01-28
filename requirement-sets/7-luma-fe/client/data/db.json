@@ -1,6 +1,124 @@
 {
   "contacts": [
-    [],
-    []
+    [
+      {
+        "id": "e98e1cde-9455-499f-9696-c4c2deafa345",
+        "Patient": {
+          "firstname": "Alexander",
+          "lastname": "",
+          "dateOfBirth": "",
+          "email": "",
+          "address1": "",
+          "language": "",
+          "contacts": [
+            {
+              "active": true,
+              "type": "",
+              "value": ""
+            }
+          ]
+        },
+        "Referral": {
+          "patient": "",
+          "notes": ""
+        }
+      }
+    ],
+    [
+      {
+        "id": "b08a8f87-91a6-4779-bd7d-afd79a3de255",
+        "Patient": {
+          "firstname": "Tama",
+          "lastname": "",
+          "dateOfBirth": "",
+          "email": "",
+          "address1": "",
+          "language": "",
+          "contacts": [
+            {
+              "active": true,
+              "type": "",
+              "value": ""
+            }
+          ]
+        },
+        "Referral": {
+          "patient": "",
+          "notes": ""
+        }
+      }
+    ],
+    [
+      {
+        "id": "b08a8f87-91a6-4779-bd7d-afd79a3de255",
+        "Patient": {
+          "firstname": "Tama",
+          "lastname": "",
+          "dateOfBirth": "",
+          "email": "",
+          "address1": "",
+          "language": "",
+          "contacts": [
+            {
+              "active": true,
+              "type": "",
+              "value": ""
+            }
+          ]
+        },
+        "Referral": {
+          "patient": "",
+          "notes": ""
+        }
+      }
+    ],
+    [
+      {
+        "id": "b08a8f87-91a6-4779-bd7d-afd79a3de255",
+        "Patient": {
+          "firstname": "Tama",
+          "lastname": "",
+          "dateOfBirth": "",
+          "email": "",
+          "address1": "",
+          "language": "",
+          "contacts": [
+            {
+              "active": true,
+              "type": "",
+              "value": ""
+            }
+          ]
+        },
+        "Referral": {
+          "patient": "",
+          "notes": ""
+        }
+      }
+    ],
+    [
+      {
+        "id": "295fd020-87cc-43c8-96a1-0509acbf9a23",
+        "Patient": {
+          "firstname": "Ronda",
+          "lastname": "",
+          "dateOfBirth": "",
+          "email": "",
+          "address1": "",
+          "language": "",
+          "contacts": [
+            {
+              "active": true,
+              "type": "",
+              "value": ""
+            }
+          ]
+        },
+        "Referral": {
+          "patient": "",
+          "notes": ""
+        }
+      }
+    ]
   ]
 }
