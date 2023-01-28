@@ -1,67 +1,6 @@
 {
   "contacts": [
-    {
-      "Patient": {
-        "firstname": "mmmm",
-        "lastname": "",
-        "dateOfBirth": "",
-        "email": "",
-        "address1": "",
-        "language": "",
-        "contacts": [
-          {
-            "active": true,
-            "type": "",
-            "value": ""
-          }
-        ]
-      },
-      "Referral": {
-        "patient": "",
-        "notes": ""
-      }
-    },
-    {
-      "Patient": {
-        "firstname": "Alexander",
-        "lastname": "",
-        "dateOfBirth": "",
-        "email": "",
-        "address1": "",
-        "language": "",
-        "contacts": [
-          {
-            "active": true,
-            "type": "",
-            "value": ""
-          }
-        ]
-      },
-      "Referral": {
-        "patient": "",
-        "notes": ""
-      }
-    },
-    {
-      "Patient": {
-        "firstname": "Alexander",
-        "lastname": "",
-        "dateOfBirth": "",
-        "email": "",
-        "address1": "",
-        "language": "",
-        "contacts": [
-          {
-            "active": true,
-            "type": "",
-            "value": ""
-          }
-        ]
-      },
-      "Referral": {
-        "patient": "",
-        "notes": ""
-      }
-    }
+    [],
+    []
   ]
 }

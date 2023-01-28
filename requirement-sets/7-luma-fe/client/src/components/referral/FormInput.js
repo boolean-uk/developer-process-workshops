@@ -12,27 +12,117 @@ import {
   Email as EmailIcon,
 } from '@material-ui/icons';
 
+// const useStyles = makeStyles((theme) => ({
+//   form: {
+//     display: 'flex',
+//     justifyContent: 'space-between',
+//     fontFamily: 'Montserrat, sans-serif',
+//     fontWeight: 400,
+//     color: 'var(--primary-font)',
+//   },
+//   leftColumn: {
+//     display: 'flex',
+//     flexDirection: 'column',
+//     width: '48%',
+//   },
+//   rightColumn: {
+//     display: 'flex',
+//     flexDirection: 'column',
+//     width: '48%',
+//   },
+//   inputField: {
+//     display: 'flex',
+//     alignItems: 'center',
+//     marginBottom: theme.spacing(2),
+//   },
+//   inputLabel: {
+//     display: 'flex',
+//     alignItems: 'center',
+//     color: 'var(--secondary-font)',
+//     marginBottom: theme.spacing(2),
+//   },
+//   inputIcon: {
+//     marginRight: theme.spacing(1),
+//     color: 'var(--icons)',
+//   },
+//   dateInput: {
+//     marginRight: theme.spacing(1),
+//     color: 'var(--secondary-font)',
+//   },
+// }));
 const useStyles = makeStyles((theme) => ({
   form: {
-    display: 'flex',
-    justifyContent: 'space-between',
+    display: 'grid',
+    gridTemplateColumns: '1fr  1fr',
+    gridTemplateRows: 'repeat(7)',
+    gridTemplateAreas: `
+    "firstname lastname"
+    "dob language"
+    "phone email"
+    "address address"
+    "notes notes"
+    "submit submit"
+    `,
     fontFamily: 'Montserrat, sans-serif',
     fontWeight: 400,
     color: 'var(--primary-font)',
+    width: '600px',
+    height: '340px',
+    margin: '-18px',
   },
-  leftColumn: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '48%',
+  firstname: {
+    display: 'grid',
+    gridArea: 'firstname',
+    marginBottom: theme.spacing(2),
   },
-  rightColumn: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '48%',
+  dob: {
+    display: 'grid',
+    gridArea: 'dob',
+    marginBottom: theme.spacing(2),
   },
-  inputField: {
-    display: 'flex',
-    alignItems: 'center',
+  phone: {
+    display: 'grid',
+    gridArea: 'contacts',
+    marginBottom: theme.spacing(2),
+    width: '90%',
+  },
+  address: {
+    display: 'grid',
+    gridArea: 'address',
+    width: '200% ',
+    marginBottom: theme.spacing(2),
+  },
+  notes: {
+    display: 'grid',
+    gridArea: 'notes',
+    width: '200% ',
+    marginBottom: theme.spacing(2),
+  },
+  lastname: {
+    display: 'grid',
+    gridArea: 'lastname',
+    marginBottom: theme.spacing(2),
+    width: '90%',
+  },
+  language: {
+    display: 'grid',
+    gridArea: 'language',
+    marginBottom: theme.spacing(2),
+    width: '90%',
+  },
+
+  email: {
+    display: 'grid',
+    gridArea: 'email',
+    marginBottom: theme.spacing(2),
+    width: '90%',
+  },
+
+  submit: {
+    display: 'grid',
+    gridArea: 'submit',
+    marginTop: '80px',
+    borderRadius: '110%',
     marginBottom: theme.spacing(2),
   },
   inputLabel: {
@@ -48,6 +138,12 @@ const useStyles = makeStyles((theme) => ({
   dateInput: {
     marginRight: theme.spacing(1),
     color: 'var(--secondary-font)',
+  },
+  leftColumn: {
+    paddingRight: '24px',
+  },
+  rightColumn: {
+    paddingLeft: '24px',
   },
 }));
 
@@ -100,24 +196,24 @@ const FormInput = () => {
     setIsBlur(false);
   };
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8000/contacts`)
-      .then(function (response) {
-        setContactDataToRender(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:8000/contacts`)
+  //     .then(function (response) {
+  //       setContactDataToRender(response.data);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }, []);
 
-  const postToDb = () => {
-    axios
-      .post(`http://localhost:8000/contacts`, contactData)
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+  // const postToDb = () => {
+  //   axios
+  //     .post(`http://localhost:8000/contacts`, contactData)
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // };
 
   return (
     <Formik
@@ -128,13 +224,13 @@ const FormInput = () => {
         setValues({ ...initialValues });
         setIsFocused(false);
         setIsBlur(false);
-        postToDb();
+        // postToDb();
       }}
     >
       {({ handleChange, values, handleSubmit }) => (
         <form onSubmit={handleSubmit} className={classes.form}>
-          <div className={classes.leftColumn}>
-            <FormControl className={classes.inputField}>
+          <div className={classes.rightColumn}>
+            <FormControl className={classes.firstname}>
               <InputLabel className={classes.inputLabel}>
                 <FirstNameIcon className={classes.inputIcon} />
                 First Name
@@ -149,7 +245,7 @@ const FormInput = () => {
                 value={values.Patient.firstname}
               />
             </FormControl>
-            <FormControl className={classes.inputField}>
+            <FormControl className={classes.dob}>
               <InputLabel className={classes.inputLabel}>
                 <DateOfBirthIcon className={classes.inputIcon} />
                 Date of Birth
@@ -175,7 +271,7 @@ const FormInput = () => {
               />
             </FormControl>
 
-            <FormControl className={classes.inputField}>
+            <FormControl className={classes.phone}>
               <InputLabel className={classes.inputLabel}>
                 <PhoneIcon className={classes.inputIcon} />
                 Phone
@@ -190,7 +286,7 @@ const FormInput = () => {
                 value={values.Patient.contacts[0].value}
               />
             </FormControl>
-            <FormControl className={classes.inputField}>
+            <FormControl className={classes.address}>
               <InputLabel className={classes.inputLabel}>
                 Address
                 <span style={{ color: 'var( --asterisk)', marginLeft: '4px' }}>
@@ -204,7 +300,7 @@ const FormInput = () => {
                 value={values.Patient.address1}
               />
             </FormControl>
-            <FormControl className={classes.inputField}>
+            <FormControl className={classes.notes}>
               <InputLabel className={classes.inputLabel}>
                 Notes/Reason
               </InputLabel>
@@ -217,7 +313,7 @@ const FormInput = () => {
             </FormControl>
           </div>
           <div className={classes.rightColumn}>
-            <FormControl className={classes.inputField}>
+            <FormControl className={classes.lastname}>
               <InputLabel className={classes.inputLabel}>
                 <FirstNameIcon className={classes.inputIcon} />
                 Last Name
@@ -232,7 +328,7 @@ const FormInput = () => {
                 value={values.Patient.lastname}
               />
             </FormControl>
-            <FormControl className={classes.inputField}>
+            <FormControl className={classes.language}>
               <InputLabel className={classes.inputLabel}>
                 <ContactLanguageIcon className={classes.inputIcon} />
                 Contact Language
@@ -244,7 +340,7 @@ const FormInput = () => {
                 value={values.Patient.language}
               />
             </FormControl>
-            <FormControl className={classes.inputField}>
+            <FormControl className={classes.email}>
               <InputLabel className={classes.inputLabel}>
                 <EmailIcon className={classes.inputIcon} />
                 Email
@@ -256,8 +352,10 @@ const FormInput = () => {
                 value={values.Patient.email}
               />
             </FormControl>
+          </div>
+          <div className={classes.submit}>
             <Button type='submit' variant='contained' color='primary'>
-              Submit
+              Submited
             </Button>
           </div>
         </form>

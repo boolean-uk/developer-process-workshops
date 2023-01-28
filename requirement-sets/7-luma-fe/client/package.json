@@ -48,6 +48,7 @@
   },
   "devDependencies": {
     "axios": "^1.2.4",
-    "json-server": "^0.17.1"
+    "json-server": "^0.17.1",
+    "lowdb": "^5.0.5"
   }
 }
