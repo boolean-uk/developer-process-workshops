@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import LocationSearchInput from './AutoComplete.js';
+import PlacesAutocomplete from './AutoComplete.js';
 import { v4 as uuidv4 } from 'uuid';
 import { Formik, Form, Field } from 'formik';
 import axios from 'axios';
@@ -124,7 +124,6 @@ const FormInput = ({ item, setCount, setShowReferralForm }) => {
       lastname: '',
       dateOfBirth: '',
       email: '',
-
       address1: '',
       language: '',
       contacts: [
@@ -157,6 +156,7 @@ const FormInput = ({ item, setCount, setShowReferralForm }) => {
       });
 
     setCount((previous) => previous + 1);
+    setShowReferralForm(false);
   };
 
   useEffect(() => {
@@ -208,12 +208,16 @@ const FormInput = ({ item, setCount, setShowReferralForm }) => {
                 type='date'
                 name='Patient.dateOfBirth'
                 onChange={handleChange}
-                value={values.Patient.dateOfBirth}
+                value={
+                  item.id
+                    ? item.Patient.dateOfBirth
+                    : values.Patient.dateOfBirth
+                }
                 onFocus={handleCustomOnFocus}
                 onBlur={handleCustomOnBlur}
                 style={{
                   color:
-                    !isFocused && !isBlur
+                    isFocused && isBlur
                       ? 'var(--transparent)'
                       : 'var(----secondary-font)',
                   marginLeft: '4px',
@@ -232,25 +236,14 @@ const FormInput = ({ item, setCount, setShowReferralForm }) => {
                 as={Input}
                 name='Patient.contacts[0].value'
                 onChange={handleChange}
-                value={values.Patient.contacts[0].value}
+                value={
+                  item.id
+                    ? item.Patient?.contacts[0].value
+                    : values.Patient.contacts[0].value
+                }
               />
             </FormControl>
-            <LocationSearchInput classes={classes} values={values} />
-            {/* <FormControl className={classes.address}>
-              <InputLabel className={classes.inputLabel}>
-                Address
-                <span style={{ color: 'var( --asterisk)', marginLeft: '4px' }}>
-                  *
-                </span>
-              </InputLabel>
-
-              <Field
-                as={Input}
-                name='Patient.address1'
-                onChange={handleChange}
-                value={values.Patient.address1}
-              />
-            </FormControl> */}
+            <PlacesAutocomplete classes={classes} values={values} item={item} />
             <FormControl className={classes.notes}>
               <InputLabel className={classes.inputLabel}>
                 Notes/Reason
@@ -259,7 +252,7 @@ const FormInput = ({ item, setCount, setShowReferralForm }) => {
                 as={Input}
                 name='Referral.notes'
                 onChange={handleChange}
-                value={!item ? item.Referral.notes : values.Referral.notes}
+                value={item ? item.Referral?.notes : values.Referral.notes}
               />
             </FormControl>
           </div>
@@ -276,7 +269,9 @@ const FormInput = ({ item, setCount, setShowReferralForm }) => {
                 as={Input}
                 name='Patient.lastname'
                 onChange={handleChange}
-                value={values.Patient.lastname}
+                value={
+                  item.id ? item.Patient?.lastname : values.Patient.lastname
+                }
               />
             </FormControl>
             <FormControl className={classes.language}>
@@ -288,7 +283,9 @@ const FormInput = ({ item, setCount, setShowReferralForm }) => {
                 as={Input}
                 name='Patient.language'
                 onChange={handleChange}
-                value={values.Patient.language}
+                value={
+                  item.id ? item.Patient?.language : values.Patient.language
+                }
               />
             </FormControl>
             <FormControl className={classes.email}>
@@ -300,7 +297,7 @@ const FormInput = ({ item, setCount, setShowReferralForm }) => {
                 as={Input}
                 name='Patient.email'
                 onChange={handleChange}
-                value={values.Patient.email}
+                value={item ? item.Patient?.email : values.Patient.email}
               />
             </FormControl>
           </div>

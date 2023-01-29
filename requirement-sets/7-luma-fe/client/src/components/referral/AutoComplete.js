@@ -7,19 +7,24 @@ import PlacesAutocomplete, {
   geocodeByAddress,
 } from 'react-places-autocomplete';
 
-const LocationSearchInput = ({ classes, values }) => {
+const LocationSearchInput = ({
+  classes,
+  values,
+  item,
+  locationHandleChange,
+}) => {
   const [address, setAddress] = useState('');
+
+  const handleSelect = async (value) => {
+    const result = await geocodeByAddress(value);
+    setAddress(result[0].formatted_address);
+  };
 
   const handleChange = (address) => {
     setAddress(address);
   };
-
-  const handleSelect = async (value) => {
-    const result = await geocodeByAddress(value);
-    console.log(result);
-    setAddress(value);
-  };
-
+  console.log('Inside Location : ', (values.Patient.address1 = address));
+  console.log('LENGTH : ', address.length);
   return (
     <PlacesAutocomplete
       value={address}
@@ -36,16 +41,21 @@ const LocationSearchInput = ({ classes, values }) => {
               </span>
             </InputLabel>
 
-            <Field
-              as={Input}
-              name='Patient.address1'
-              onChange={handleChange}
-              value={values.Patient.address1}
-              {...getInputProps({
-                placeholder: 'Search Places ...',
-                className: 'location-search-input',
-              })}
-            />
+            {item.Patient?.address1 ? (
+              <Field
+                as={Input}
+                name='Patient.address1'
+                value={item.Patient?.address1}
+              />
+            ) : (
+              <Field
+                as={Input}
+                {...getInputProps({
+                  placeholder: 'Search Places ...',
+                  className: 'location-search-input',
+                })}
+              />
+            )}
           </FormControl>
 
           <div className='autocomplete-dropdown-container'>
