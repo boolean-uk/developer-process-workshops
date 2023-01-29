@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import LocationSearchInput from './AutoComplete.js';
 import { v4 as uuidv4 } from 'uuid';
 import { Formik, Form, Field } from 'formik';
 import axios from 'axios';
@@ -219,7 +220,6 @@ const FormInput = ({ item, setCount, setShowReferralForm }) => {
                 }}
               />
             </FormControl>
-
             <FormControl className={classes.phone}>
               <InputLabel className={classes.inputLabel}>
                 <PhoneIcon className={classes.inputIcon} />
@@ -235,20 +235,22 @@ const FormInput = ({ item, setCount, setShowReferralForm }) => {
                 value={values.Patient.contacts[0].value}
               />
             </FormControl>
-            <FormControl className={classes.address}>
+            <LocationSearchInput classes={classes} values={values} />
+            {/* <FormControl className={classes.address}>
               <InputLabel className={classes.inputLabel}>
                 Address
                 <span style={{ color: 'var( --asterisk)', marginLeft: '4px' }}>
                   *
                 </span>
               </InputLabel>
+
               <Field
                 as={Input}
                 name='Patient.address1'
                 onChange={handleChange}
                 value={values.Patient.address1}
               />
-            </FormControl>
+            </FormControl> */}
             <FormControl className={classes.notes}>
               <InputLabel className={classes.inputLabel}>
                 Notes/Reason

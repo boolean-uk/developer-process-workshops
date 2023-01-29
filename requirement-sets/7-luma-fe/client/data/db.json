@@ -2,121 +2,25 @@
   "contacts": [
     [
       {
-        "id": "e98e1cde-9455-499f-9696-c4c2deafa345",
+        "id": "77ed5fa8-ad1b-4faf-9591-a422438cf3c2",
         "Patient": {
           "firstname": "Alexander",
-          "lastname": "",
-          "dateOfBirth": "",
-          "email": "",
+          "lastname": "Jones",
+          "dateOfBirth": "2001-11-16",
+          "email": "jones@google.com",
           "address1": "",
-          "language": "",
+          "language": "Polish",
           "contacts": [
             {
               "active": true,
               "type": "",
-              "value": ""
+              "value": "&897-0988-0987"
             }
           ]
         },
         "Referral": {
           "patient": "",
-          "notes": ""
-        }
-      }
-    ],
-    [
-      {
-        "id": "b08a8f87-91a6-4779-bd7d-afd79a3de255",
-        "Patient": {
-          "firstname": "Tama",
-          "lastname": "",
-          "dateOfBirth": "",
-          "email": "",
-          "address1": "",
-          "language": "",
-          "contacts": [
-            {
-              "active": true,
-              "type": "",
-              "value": ""
-            }
-          ]
-        },
-        "Referral": {
-          "patient": "",
-          "notes": ""
-        }
-      }
-    ],
-    [
-      {
-        "id": "b08a8f87-91a6-4779-bd7d-afd79a3de255",
-        "Patient": {
-          "firstname": "Tama",
-          "lastname": "",
-          "dateOfBirth": "",
-          "email": "",
-          "address1": "",
-          "language": "",
-          "contacts": [
-            {
-              "active": true,
-              "type": "",
-              "value": ""
-            }
-          ]
-        },
-        "Referral": {
-          "patient": "",
-          "notes": ""
-        }
-      }
-    ],
-    [
-      {
-        "id": "b08a8f87-91a6-4779-bd7d-afd79a3de255",
-        "Patient": {
-          "firstname": "Tama",
-          "lastname": "",
-          "dateOfBirth": "",
-          "email": "",
-          "address1": "",
-          "language": "",
-          "contacts": [
-            {
-              "active": true,
-              "type": "",
-              "value": ""
-            }
-          ]
-        },
-        "Referral": {
-          "patient": "",
-          "notes": ""
-        }
-      }
-    ],
-    [
-      {
-        "id": "295fd020-87cc-43c8-96a1-0509acbf9a23",
-        "Patient": {
-          "firstname": "Ronda",
-          "lastname": "",
-          "dateOfBirth": "",
-          "email": "",
-          "address1": "",
-          "language": "",
-          "contacts": [
-            {
-              "active": true,
-              "type": "",
-              "value": ""
-            }
-          ]
-        },
-        "Referral": {
-          "patient": "",
-          "notes": ""
+          "notes": "Good helath"
         }
       }
     ]

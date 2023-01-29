@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { FormControl, InputLabel, Input, Button } from '@material-ui/core';
+import { Formik, Form, Field } from 'formik';
+
 import uuid4 from 'uuid4';
 import PlacesAutocomplete, {
   geocodeByAddress,
 } from 'react-places-autocomplete';
 
-const LocationSearchInput = () => {
+const LocationSearchInput = ({ classes, values }) => {
   const [address, setAddress] = useState('');
 
   const handleChange = (address) => {
@@ -25,12 +28,26 @@ const LocationSearchInput = () => {
     >
       {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
         <div>
-          <input
-            {...getInputProps({
-              placeholder: 'Search Places ...',
-              className: 'location-search-input',
-            })}
-          />
+          <FormControl className={classes.address}>
+            <InputLabel className={classes.inputLabel}>
+              Address
+              <span style={{ color: 'var( --asterisk)', marginLeft: '4px' }}>
+                *
+              </span>
+            </InputLabel>
+
+            <Field
+              as={Input}
+              name='Patient.address1'
+              onChange={handleChange}
+              value={values.Patient.address1}
+              {...getInputProps({
+                placeholder: 'Search Places ...',
+                className: 'location-search-input',
+              })}
+            />
+          </FormControl>
+
           <div className='autocomplete-dropdown-container'>
             {loading && <div>Loading...</div>}
             {suggestions.map((suggestion) => {
