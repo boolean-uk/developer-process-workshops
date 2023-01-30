@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -9,6 +8,10 @@ import {
   Typography,
   Button,
 } from '@mui/material';
+import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+
 import FormInput from './FormInput';
 
 const useStyles = makeStyles((theme) => ({
@@ -23,6 +26,18 @@ const useStyles = makeStyles((theme) => ({
     display: 'grid',
     placeItems: 'center',
     paddingBottom: '24px',
+  },
+  arrowHead: {
+    transform: 'rotate(-90deg)',
+  },
+  container: {
+    display: 'grid',
+    gridTemplateColumns: ' 60px 160px 270px 60px 20px',
+    alignItems: 'center',
+    justifyItems: 'left',
+  },
+  typography: {
+    marginRight: 'auto',
   },
 }));
 
@@ -42,18 +57,32 @@ const AccordionComponent = () => {
     axios
       .get(`http://localhost:8000/contacts`)
       .then(function (response) {
-        let uniqueArray = [];
-        response.data.flat().filter((item) => {
-          if (!uniqueArray.some((i) => i.id === item.id)) {
-            uniqueArray.push(item);
-          }
-        });
-        setContactDataToRender(uniqueArray);
+        setContactDataToRender(response.data);
       })
       .catch(function (error) {
         console.log(error);
       });
   }, [count]);
+
+  const onDelete = async (id) => {
+    const objectToDeleteFrom = structuredClone(contactDataToRender);
+    setContactDataToRender([
+      ...objectToDeleteFrom.filter((el) => el.id !== id),
+    ]);
+
+    await deleteFromDb(id);
+  };
+
+  const deleteFromDb = async (id) => {
+    await axios
+      .delete(`http://localhost:8000/contacts/${id}`)
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    setCount((previous) => previous + 1);
+    setShowReferralForm(false);
+  };
 
   return (
     <>
@@ -72,9 +101,24 @@ const AccordionComponent = () => {
                     aria-controls='panel-content'
                     style={{ paddingLeft: '0px', padding: '0px' }}
                   >
-                    <Typography className={classes.formTab}>
-                      Tab {index + 1}
-                    </Typography>
+                    <div className={classes.container}>
+                      <Typography className={classes.formTab}>
+                        Tab {index + 1}
+                      </Typography>
+
+                      <Typography>
+                        {item.Patient.firstname} {item.Patient.lastname}
+                      </Typography>
+
+                      <div></div>
+                      <IconButton
+                        aria-label='delete'
+                        onClick={() => onDelete(item.id)}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                      <ChevronLeftIcon className={classes.arrowHead} />
+                    </div>
                   </AccordionSummary>
                   <AccordionDetails>
                     <FormInput item={item} setCount={setCount} />
@@ -107,6 +151,7 @@ const AccordionComponent = () => {
                 setCount={setCount}
                 item={'new-referral'}
                 setShowReferralForm={setShowReferralForm}
+                contactDataToRender={contactDataToRender}
               />
             </AccordionDetails>
           </Accordion>

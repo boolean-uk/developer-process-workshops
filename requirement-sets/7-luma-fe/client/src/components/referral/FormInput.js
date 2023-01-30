@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PlacesAutocomplete from './AutoComplete.js';
 import { v4 as uuidv4 } from 'uuid';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Field } from 'formik';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import { FormControl, InputLabel, Input, Button } from '@material-ui/core';
@@ -9,7 +9,6 @@ import {
   AccountCircle as FirstNameIcon,
   CalendarToday as DateOfBirthIcon,
   Phone as PhoneIcon,
-  InsertEmoticon as LastNameIcon,
   Language as ContactLanguageIcon,
   Email as EmailIcon,
 } from '@material-ui/icons';
@@ -115,7 +114,6 @@ const FormInput = ({ item, setCount, setShowReferralForm }) => {
   const classes = useStyles();
   const [isFocused, setIsFocused] = useState(false);
   const [isBlur, setIsBlur] = useState(false);
-  const [contactData, setContactData] = useState([]);
 
   const initialValues = {
     id: uuidv4(),
@@ -148,9 +146,9 @@ const FormInput = ({ item, setCount, setShowReferralForm }) => {
     setIsBlur(false);
   };
 
-  const postToDb = async () => {
+  const postToDb = async (value) => {
     await axios
-      .post(`http://localhost:8000/contacts`, [...contactData])
+      .post(`http://localhost:8000/contacts`, value)
       .catch(function (error) {
         console.log(error);
       });
@@ -159,17 +157,11 @@ const FormInput = ({ item, setCount, setShowReferralForm }) => {
     setShowReferralForm(false);
   };
 
-  useEffect(() => {
-    if (contactData.length > 0) {
-      postToDb();
-    }
-  }, [contactData]);
-
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={(values, { setValues }) => {
-        setContactData([...contactData, values]);
+        postToDb(values);
         setValues({ ...initialValues });
         setIsFocused(false);
         setIsBlur(false);

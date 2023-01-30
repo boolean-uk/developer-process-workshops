@@ -1,28 +1,48 @@
 {
   "contacts": [
-    [
-      {
-        "id": "88e90276-d3ab-40c6-ba5b-1b028da363fa",
-        "Patient": {
-          "firstname": "Alexander",
-          "lastname": "Won",
-          "dateOfBirth": "2023-01-13",
-          "email": "hellNo@google.com",
-          "address1": "34-100 Wadowice, Poland",
-          "language": "Polish",
-          "contacts": [
-            {
-              "active": true,
-              "type": "",
-              "value": "666"
-            }
-          ]
-        },
-        "Referral": {
-          "patient": "",
-          "notes": "No reason"
-        }
+    {
+      "id": "86127f87-e6bc-4b99-8e74-8564eb009ea3",
+      "Patient": {
+        "firstname": "Alexander",
+        "lastname": "Django",
+        "dateOfBirth": "2023-01-05",
+        "email": "dagga@fontein.com",
+        "address1": "Daggafontein, Springs, 1559, South Africa",
+        "language": "Polish",
+        "contacts": [
+          {
+            "active": true,
+            "type": "",
+            "value": "(878)876-9850"
+          }
+        ]
+      },
+      "Referral": {
+        "patient": "",
+        "notes": "No good reason"
       }
-    ]
+    },
+    {
+      "id": "dedb91db-cbb4-4a8a-8b66-5535c6265d32",
+      "Patient": {
+        "firstname": "Peter",
+        "lastname": "Hadridge",
+        "dateOfBirth": "2023-01-04",
+        "email": "hadridge@ridge.com",
+        "address1": "Daggakraal, 2491, South Africa",
+        "language": "Swedish",
+        "contacts": [
+          {
+            "active": true,
+            "type": "",
+            "value": "(076)654-9097"
+          }
+        ]
+      },
+      "Referral": {
+        "patient": "",
+        "notes": "Good day."
+      }
+    }
   ]
 }

@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
-import { FormControl, InputLabel, Input, Button } from '@material-ui/core';
-import { Formik, Form, Field } from 'formik';
+import { FormControl, InputLabel, Input } from '@material-ui/core';
+import { Field } from 'formik';
 
 import uuid4 from 'uuid4';
 import PlacesAutocomplete, {
   geocodeByAddress,
 } from 'react-places-autocomplete';
 
-const LocationSearchInput = ({
-  classes,
-  values,
-  item,
-  locationHandleChange,
-}) => {
+const LocationSearchInput = ({ classes, values, item }) => {
   const [address, setAddress] = useState('');
 
   const handleSelect = async (value) => {
@@ -23,8 +18,9 @@ const LocationSearchInput = ({
   const handleChange = (address) => {
     setAddress(address);
   };
-  console.log('Inside Location : ', (values.Patient.address1 = address));
-  console.log('LENGTH : ', address.length);
+
+  values.Patient.address1 = address;
+
   return (
     <PlacesAutocomplete
       value={address}
