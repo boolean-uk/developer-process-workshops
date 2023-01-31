@@ -9,9 +9,9 @@ import {
   AccountCircle as FirstNameIcon,
   CalendarToday as DateOfBirthIcon,
   Phone as PhoneIcon,
-  Language as ContactLanguageIcon,
   Email as EmailIcon,
 } from '@material-ui/icons';
+import TranslateIcon from '@material-ui/icons/Translate';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -268,7 +268,7 @@ const FormInput = ({ item, setCount, setShowReferralForm }) => {
             </FormControl>
             <FormControl className={classes.language}>
               <InputLabel className={classes.inputLabel}>
-                <ContactLanguageIcon className={classes.inputIcon} />
+                <TranslateIcon className={classes.inputIcon} />
                 Contact Language
               </InputLabel>
               <Field
@@ -296,7 +296,7 @@ const FormInput = ({ item, setCount, setShowReferralForm }) => {
           {!item.id && (
             <div className={classes.submit}>
               <Button type='submit' variant='contained' color='primary'>
-                Submited
+                Send Referrals
               </Button>
             </div>
           )}

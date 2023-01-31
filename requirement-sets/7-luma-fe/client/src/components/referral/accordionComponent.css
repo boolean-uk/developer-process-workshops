@@ -1,0 +1,38 @@
+.tab_0 {
+  display: grid;
+  align-items: center;
+  background-color: var(--tab-one);
+  width: 32px;
+  height: 150%;
+}
+
+.tab_1 {
+  display: grid;
+  align-items: center;
+  background-color: var(--tab-two);
+  width: 32px;
+  height: 150%;
+}
+
+.tab_2 {
+  display: grid;
+  align-items: center;
+  background-color: var(--tab-three);
+  width: 32px;
+  height: 150%;
+}
+
+.tab_3 {
+  display: grid;
+  align-items: center;
+  background-color: var(--tab-four);
+  width: 32px;
+  height: 150%;
+}
+.tab_4 {
+  display: grid;
+  align-items: center;
+  background-color: var(--tab-five);
+  width: 32px;
+  height: 150%;
+}

@@ -13,7 +13,7 @@ import ReferralForm from './components/referral/ReferralForm.js';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path='/' element={<LandingPage />} />
+      <Route exact path='/' element={<LandingPage />} />
       <Route path='/referral' element={<ReferralForm />} />
     </>
   )

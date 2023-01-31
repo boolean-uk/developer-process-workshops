@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './referral-form.css';
 import AccordionComponent from './AccordionComponent';
 
@@ -7,6 +8,9 @@ const ReferralForm = () => {
     <>
       <div className='form-wrapper'>
         <div className='form-heading'>
+          <Link reloadDocument className='link-notes' to='/'>
+            Back to Homepage
+          </Link>
           <p>Patient Referral Form</p>
           <p>Hays Valley Health San Francisco</p>
         </div>

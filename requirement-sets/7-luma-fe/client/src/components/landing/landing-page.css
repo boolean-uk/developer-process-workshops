@@ -1,6 +1,6 @@
 .landing-page {
   position: relative;
-  height: 100vh;
+  height: 85vh;
   background-image: url('../../../public/images/hero-image.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -15,4 +15,29 @@
   height: 100%;
   background-color: var(--primary-color);
   opacity: 0.3;
+}
+
+.form-heading {
+  padding-bottom: 2rem;
+}
+
+.link-notes,
+Link {
+  display: grid;
+  place-content: center;
+  font-family: inherit;
+  font-size: larger;
+  cursor: pointer;
+  background-color: rgb(37, 66, 119);
+  border: 1px black;
+  border-radius: 0.2rem;
+  padding: 0.2rem;
+  margin: 1rem 0 1rem 0;
+  text-decoration: none;
+  color: aliceblue;
+}
+
+span {
+  display: grid;
+  grid-auto-flow: column;
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './accordionComponent.css';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Accordion,
@@ -17,6 +18,7 @@ import FormInput from './FormInput';
 const useStyles = makeStyles((theme) => ({
   formTab: {
     background: 'var(--tab-one)',
+    height: '150%',
   },
   accordionTab: {
     background: 'blue',
@@ -102,8 +104,8 @@ const AccordionComponent = () => {
                     style={{ paddingLeft: '0px', padding: '0px' }}
                   >
                     <div className={classes.container}>
-                      <Typography className={classes.formTab}>
-                        Tab {index + 1}
+                      <Typography className={`tab_${index}`}>
+                        {index + 1}
                       </Typography>
 
                       <Typography>
@@ -157,15 +159,18 @@ const AccordionComponent = () => {
           </Accordion>
         </div>
       )}
-      <Button
-        variant='outlined'
-        color='primary'
-        onClick={() => {
-          setShowReferralForm(true);
-        }}
-      >
-        + ADD ANOTHER PATIENT
-      </Button>
+
+      {!showReferralForm && (
+        <Button
+          variant='outlined'
+          color='primary'
+          onClick={() => {
+            setShowReferralForm(true);
+          }}
+        >
+          + ADD ANOTHER PATIENT
+        </Button>
+      )}
     </>
   );
 };
