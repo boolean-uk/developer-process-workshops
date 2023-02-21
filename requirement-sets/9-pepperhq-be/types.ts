@@ -1,11 +1,3 @@
-import { Response } from "express";
-
-type ResponsePlus = {
-  originalSend: Function
-}
-
-export type AugmentedResponse = Response & ResponsePlus;
-
 type BaseProduct = {
   id: string;
   price: number;
