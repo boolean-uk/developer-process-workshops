@@ -54,3 +54,10 @@ Referral: {
 ```
 
 Taken from https://github.com/lumahealthhq/front-end-interview
+
+## IMPORTANT NOTE
+- The tech test's repo is old and has note been maintained, so there may be dependency issues.
+- One known issue is that on trying to run the React app, it will display this error message: `error:0308010C:digital envelope routines::unsupported`
+- This is a dependency issue between Node and Webpack. If you get this message, then your installed version of Node is too modern, so you will need to downgrade to v16.
+- The Node v16 LTS version number is `16.20.1`.
+- It has however been successfully resolved using `v16.14.0`.
